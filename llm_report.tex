@@ -63,51 +63,140 @@
 %=================================================
 \section{引言}
 %=================================================
-\begin{frame}{背景与目标}
+\begin{frame}{引言}
   \begin{itemize}
-    \item \textbf{什么是大语言模型？} 大语言模型（LLM）的本质在于：在大量向量化的词语库的基础上，通过数学模型实现词语预测的功能，并且这一数学模型可以被抽象为LLM对于语言含义的“理解”。
-    \item \textbf{对于经济学领域的影响？} 文本数据是经济学研究中最常见的数据类型之一，LLM基于文本训练的特性可以使其以更低成本实现对文本数据的处理。
-    \item \textbf{本次分享的安排如下：}
-      \begin{enumerate}
-        \item 基于代码层面调用大语言模型处理文本数据的方法与学术实例
-        \item 使用RAG与Finetuning特化LLM在某一领域理解力的方法与实例
-        \item 基于大语言模型的实用开源项目介绍
-      \end{enumerate}
+    \item \textbf{文本是知识的载体} 
+    \item 合理处理文本，是构造解释、被解释变量的关键
+    \item 当前处理文本数据以文本\textbf{匹配}为核心：
+  \begin{enumerate}
+  	\item 使用正则表达式提取CEO简历数据
+	\item 使用情感词词典判断媒体情绪
+	\item 使用数字化转型词典判断企业是否发生数字化转型
+\end{enumerate}
+    \item 在面临更加“复杂”的文本环境时，由于难以穷尽各类匹配情况，研究者需要手动操作进行提取。
+    \item \textbf{但是，机器可以替代重复简单劳动！}
   \end{itemize}
 \end{frame}
 
-%=================================================
-\section{基于代码层面的LLM调用}
-%=================================================
-\begin{frame}{为什么使用API调用LLM}
-    \begin{itemize}
-        \item  API指应用程序编程接口，通过API用户可以网络链接提供商的服务器，从而在代码中嵌入LLM功能。
-    \end{itemize}
-    \begin{table}[h]
-        \centering
-        \begin{tabular}{c|c}
-            API调用LLM & 网页端使用LLM \\
-            \hline
-            代码交互 & 可视化交互 \\
-            需要有一定编程基础 & 容易上手 \\
-            应用场景灵活 & 限于固定功能与场景 \\
-            支持对模型进行调整 & 仅提供基础选择 \\
-            支持长文本批量处理 & 仅支持单文本 \\
-            按使用量计费 & 免费或订阅制付费 \\
-        \end{tabular}
-    \end{table}
+\begin{frame}[fragile]{示例1}
+  \begin{itemize}
+    \item 如何判断普通网民的情绪？
+    \item \textbf{与媒体情绪的区别：} 网络留言更为随意，文本样式多变
+    \item \textbf{例如（摘自东方财富股吧）：}
+  \begin{enumerate}
+	\item 工行没吃饭呢林黛玉似的好柔弱
+	\item 顶王粉丝光荣站岗
+\end{enumerate}
+  \end{itemize}
+  \pause
+    \begin{figure}[htpb]
+  	\centering
+  	\includegraphics[width=0.9\linewidth]{figs/林黛玉.png}
+  \end{figure}
+\end{frame}
+\begin{frame}[fragile]{示例1}
+	\begin{itemize}
+		\item\textbf{ 如何判断普通网民的情绪？}
+		\item \textbf{与媒体文本的区别：} 网络留言更为随意，文本样式多变
+		\item \textbf{例如（摘自东方财富股吧）：}
+		\begin{enumerate}
+			\item 工行没吃饭呢林黛玉似的好柔弱
+			\item 顶王粉丝光荣站岗
+		\end{enumerate}
+	\end{itemize}
+	\begin{figure}[htpb]
+		\centering
+		\includegraphics[width=0.9\linewidth]{figs/顶王.png}
+	\end{figure}
 \end{frame}
 
-\begin{frame}{主流大语言模型API的获取}
+\begin{frame}{示例2}
+	\begin{itemize}
+	\item \textbf{如何提取文本中的关键信息？}
+	\item \textbf{当目标文本格式不统一，正则表达式提取就变得极为复杂} 
+	\item \textbf{例如：}从政府工作报告提取经济增长目标值
+\end{itemize}
+    \begin{columns}
+	\begin{column}{.5\textwidth}
+		\begin{itemize}
+		\item 使用正则表达式流程：
+		\begin{enumerate}
+			\item 读取多篇文献，找到几类常见用语，并转译成正则表达式
+			\item 使用正则表达式进行匹配
+			\item 匹配后检查未匹配到的城市的文本，完善正则表达式，返回步骤2
+		\end{enumerate} 
+	\end{itemize}
+	\end{column}
+	\begin{column}{.45\textwidth}
+			\begin{itemize}
+			\item 使用大语言模型：
+		\end{itemize}
+	\begin{figure}[htpb]
+	\centering
+	\includegraphics[width=1.34\linewidth]{figs/经济增长.png}
+\end{figure}
+	\end{column}
+\end{columns}
+\end{frame}
+%=================================================
+\section{大语言模型的代码调用}
+%=================================================
+\begin{frame}{代码调用与网页调用对比}
     \begin{itemize}
-        \item  \textbf{国内厂商:}直接登陆官方网站注册账号即可获取。
-        \item  \textbf{国外厂商:}通常需要通过境外信用卡支付，对网络条件有一定要求。
-        \item[] 解决方案（仅作参考）：
-        \begin{enumerate}
-            \item 使用虚拟信用卡\url{https://yeka.ai},优化网络环境。
-            \item 使用国内代理服务商\url{https://o3.fan}
-          \end{enumerate}
+        \item 但是，如果待处理样本量过大，从网页逐个处理是否反而繁琐？
+        \item \textbf{机器可以替代重复简单劳动！}
+        \pause 
+        \item 实际上，除了相对易用的网页端口，厂商还提供了API（编程接口），供开发者在代码中嵌入大语言模型。这为批量处理文本提供条件。
       \end{itemize}
+    \begin{columns}
+	\begin{column}{.5\textwidth}
+		\begin{figure}[htpb]
+		\centering
+		\includegraphics[width=1\linewidth]{figs/顶王.png}
+	\end{figure}
+	\end{column}
+	
+	\begin{column}{.5\textwidth}
+		\begin{figure}[htpb]
+			\centering
+			\includegraphics[width=1\linewidth]{figs/顶王2.png}
+		\end{figure}
+	\end{column}
+\end{columns}
+
+  
+\end{frame}
+
+\begin{frame}{主流大语言模型API Key的获取}
+    \begin{itemize}
+        \item  \textbf{国内厂商:}一般而言，国内厂商的API平台与大语言模型平台在相邻页面。以deepseek为例
+        	\begin{figure}[htpb]
+        	\centering
+        	\includegraphics[width=1\linewidth]{figs/API1.png}
+        \end{figure}
+   
+      \end{itemize}
+\end{frame}
+\begin{frame}{主流大语言模型API Key的获取}
+	\begin{itemize}
+		\item  \textbf{国内厂商:}一般而言，国内厂商的API平台与大语言模型平台在相邻页面。以deepseek为例
+		\begin{figure}[htpb]
+			\centering
+			\includegraphics[width=1\linewidth]{figs/API2.png}
+		\end{figure}
+		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{主流大语言模型API Key的获取}
+	\begin{itemize}
+		\item  \textbf{国外厂商:}通常需要通过境外信用卡支付，对网络条件有一定要求。
+		\item[] 解决方案（仅作参考）：
+		\begin{enumerate}
+			\item 使用虚拟信用卡\url{https://yeka.ai},优化网络环境。
+			\item 使用代理服务商\url{https://openrouter.ai}
+		\end{enumerate}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{API参考定价 (2025-03-09)}
@@ -153,20 +242,22 @@
         
 \end{frame}
 
-\begin{frame}[fragile]{API调用的代码示例 (Python)}
+\begin{frame}[fragile]{代码详细说明 (Python)}
     \scriptsize
 \textbf{使用openai库:} 目前主流厂商的API调用都可以通过openai库实现，因此仅展示openai库的使用方法。
 
 \begin{lstlisting}[language={Python}]
 from openai import OpenAI  
-client = OpenAI()  # 初始化OpenAI客户端，可填入API密钥与url网址
+client = OpenAI()  # 初始化OpenAI客户端，可填入API Key与url网址
 prompt = "You are a helpful assistant"  # 系统角色提示
 input_text = "What is the capital of France?"  # 用户输入问题
 completion = client.chat.completions.create(
     model="gpt-4o",  # 指定模型
     messages=[ 
         {"role": "system","content": prompt},  # 系统角色消息
-        {"role": "user","content": input_text}  # 用户角色消息
+        {"role": "user","content": inquire1},  # 第一轮对话用户角色消息
+        {"role": "assistant","content": output1} , #  AI返回消息
+        {"role": "user","content": input_text}  # 第二轮对话输入信息
     ],
     temperature=1,  # 温度1为最高
     max_tokens=2048,  # 限制生成最大长度
@@ -179,39 +270,78 @@ print(completion.choices[0].message.content)  # 输出首个响应内容
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{API调用进阶1: 重要参数解析}
+\begin{frame}[fragile]{代码详细说明: 重要参数解析}
     \begin{itemize}
         \item \textbf{model}：指定模型版本，如 "gpt-4o"、"deepseek-chat"。
         \item \textbf{messages}：构建对话历史（系统、用户、助手）。
         \item \textbf{temperature}：控制随机性，数值越高生成越多样。
+         \item \textbf{top\_p}：随机采样策略，作用与temperature相同。
         \item \textbf{max\_tokens}：限制返回文本的最大长度。
-        \item \textbf{top\_p}：核采样策略，1为全概率采样。
         \item \textbf{frequency\_penalty} \& \textbf{presence\_penalty}：调整重复率和新话题引入。
     \end{itemize}
     \medskip
-    \textbf{建议：} 根据任务需求调整参数，如创意写作可提高temperature，事实查询则建议降低temperature。
+    \textbf{建议：} 根据任务需求调整参数，如创意写作可提高temperature，事实查询则建议降低temperature，但是tempreature与top\_p不能同时修改。
 \end{frame}
 
 \begin{frame}[fragile]{API调用进阶2:多线程调用}
 \small
     在实际应用中，为了提高API调用效率，可以采用多线程并发处理多个请求。多线程调用的优势包括：
     \begin{itemize}
-        \item \textbf{提高响应速度：} 多个线程可以同时发起请求，充分利用系统资源，从而减少总体等待时间。
-        \item \textbf{更高的吞吐量：} 并发执行多个API调用可以显著提升整体处理能力，适用于高并发场景。
-        \item \textbf{简化代码结构：} 利用现有的多线程库（如 \texttt{concurrent.futures}）可以方便地管理线程，减少手动管理线程的复杂性。
+        \item \textbf{提高响应速度} 
+        \item \textbf{更高的处理量} 
     \end{itemize}
     具体代码示例，已保存在项目库中，可进一步查看。
 
-    \textbf{注意：} 由于大部分平台都对访问流量设置限制,使用多线程时需要特别注意线程安全和异常处理。
+    \textbf{注意：} 由于大部分平台都有访问流量上限,使用多线程时需要特别注意线程数量不能超过限制。
+\end{frame}
+
+\begin{frame}[fragile]{实际应用：使用大语言模型提取上海市历年经济增长目标}
+
+	\begin{enumerate}
+		\item 遍历文件夹，将政府工作报告文本、年份、城市名，整理成规范表格
+		\item 选择合适模型，获取所需要模型的API Key
+		\item 使用多线程方法，批量调用大语言模型处理文本
+		\item 等待结果返回
+	\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]
+	\begin{itemize}
+		\item 最终结果：由于工作报告文本量较大，处理20个样本最终耗时2分钟，计费0.1元
+		\item 处理结果展示
+		\begin{figure}[htpb]
+			\centering
+			\includegraphics[width=0.8\linewidth]{figs/处理结果.png}
+		\end{figure}
+		\item 2022年工作报告原文：“2022年全区经济社会发展的主要预期目标是：地区生产总值增速高于全市平均水平，区级一般公共预算收入增长8\%”
+	\end{itemize}
 \end{frame}
 
 %=================================================
-\section{如何强化LLM在特定领域的理解力}
+\section{如何强化大语言模型在特定领域的理解力}
+\begin{frame}[fragile] {引言}
+	\begin{itemize}
+		\item \textbf{可靠性}是学术研究的关键，在实际论文中使用大语言模型构造X、Y，仍有两个问题还需解决：
+		\item \textbf{如何使大语言模型掌握处理特定文本数据的能力？}
+		\item \textbf{如何证明大语言模型确实掌握了这个能力？}
+
+
+\item \textbf{解决方案：}
+	\begin{enumerate}
+	\item 设计合理提示词（Prompt）
+	\item 构造知识库（RAG）
+	\item 对大语言模型进行微调（Fine-Tunning）
+\end{enumerate}
+	\end{itemize}
+\end{frame}
+
 %=================================================
 \subsection{Prompt Engineering（提示词工程）}
 \begin{frame}[fragile]{Prompt工程}
     \small
 \begin{itemize}
+  \item 	\textbf{什么是Prompt} 如果把大语言模型比作工人，Prompt就相当于指导工人的号令。
   \item \textbf{为什么还需要prompt？}虽然目前最先进大语言模型已内置思维链，使用时无需复杂提示，但经济学领域的任务多为文本分类和语义识别。此时，采用思维链模型成本较高且优势不明显，因此应选择效果好且经济的方案。
   \item \textbf{什么是好的prompt？} 好的prompt应具备以下特点：
    \begin{enumerate}
@@ -224,27 +354,34 @@ print(completion.choices[0].message.content)  # 输出首个响应内容
 \end{itemize}
 \textbf{小贴示：} 
 \begin{itemize}
-    \item 关于各类具体情境下的prompt示例，可参考\url{https://github.com/openai/openai-cookbook/}
-    \item 众多API平台都提供了prompt生成功能，可根据需求进行选择。
+    \item 众多API平台都提供了prompt生成功能，可以先在对应平台生成prompt再进行修改。
 \end{itemize}
+\end{frame}
 
+\begin{frame}[fragile]{Prompt示例}
+
+       \begin{figure}[ht]
+\flushleft
+	\includegraphics[height=0.85\textheight]{figs/prompt示例.pdf}
+\end{figure}
 \end{frame}
 
 \subsection{RAG（检索增强生成）}
 \begin{frame}[fragile]{构建知识库}
 \small
-\textbf{为什么RAG:} 目前主流API平台，如：阿里、coze，大多支持上传pdf、word、txt等格式的文档，
-通过将文本向量化构建知识库，再通过检索与生成的方式实现对特定领域的文本理解。
+\begin{itemize}
+	
+\item \textbf{什么是RAG} 如果把大语言模型比作工人，知识库就相当于指导工人如何工作的手册，可供其翻阅。
 
-与直接使用大语言模型相比，RAG具有以下优势：
+\item 目前主流API平台，如：阿里、coze，大多支持上传pdf、word、txt等格式的文档来构建知识库，在调用过程中，模型可从知识库中读取知识来提高回复质量。
+
+\item 与直接使用大语言模型相比，RAG具有以下特点：
 \begin{enumerate}
-    \item \textbf{成本更低：} 相较于直接调用大语言模型，RAG只需要在初始阶段对文档进行一次性向量化，
-          后续生成过程仅依赖于检索结果，从而降低长期使用的成本。
-    \item \textbf{更高效：} 利用文档中的信息作为上下文，能提高生成回答的准确性和完整性，
-    避免因缺乏领域知识而产生的错误或偏差。
-\item \textbf{更灵活：} RAG可以根据具体需求调整检索和生成模块，
-    同时适应不断更新的领域知识，满足实时性要求。
+    \item \textbf{成本更低：} 只收取上传一次时的费用，后续不再收费
+    \item \textbf{更高效：} 利用文档中的信息作为上下文，能提高生成回答的准确性和完整性
+ \item \textbf{文本读取相对随机：} “工人”是否会读取知识库，会受到知识库多大影响无法准确衡量。因此，知识库并不适用于严肃的应用场景。
 \end{enumerate}
+\end {itemize}
 \end{frame}
 
 \begin{frame}[fragile]{知识库 vs 非知识库回答}
@@ -275,9 +412,11 @@ print(completion.choices[0].message.content)  # 输出首个响应内容
 \subsection{Fine-Tuning（微调）}
 \begin{frame}[fragile]{通过微调强化特定领域能力}
 \small
-\textbf{为什么微调？}：微调模型是目前经济学论文中常用的步骤，通过微调可以强化模型在特定领域的表现，确保分析结果的可信度和针对性。
-
-\vspace{1em}
+\begin{itemize}
+	
+	\item \textbf{什么是微调？}：如果把大语言模型比作工人，微调就相当于使用实现准备好的针对性教材（数据），以上课的方式，对大语言模型的思维模式进行改进，以适应新工作。
+	\item \textbf{为什么要微调？}：通过微调一方面可以提升模型处理数据的能力，另一方面也可以验证模型处理数据的可靠度。
+\end{itemize}
 \textbf{微调步骤：}
 \begin{enumerate}
     \item 准备并上传训练数据
@@ -290,13 +429,13 @@ print(completion.choices[0].message.content)  # 输出首个响应内容
 \begin{frame}[fragile]{如何准备微调数据：}
 
 \begin{enumerate}
-    \item \textbf{数据标注}：对于需要监督学习的任务，需要对数据进行准确的标注：
+    \item \textbf{数据标注}：根据需要处理的目标任务，针对性的提供一系列回答的结果示例。
     \item \textbf{数据格式化}：将预处理后的数据转换为模型所需的格式。常见格式有 JSON、CSV 等。例如，在基于文本分类的微调中，由于要求回答相对单一，可以采用如下格式：
     \begin{verbatim}
 {"prompt": "请你判断“今天股票又亏了三个点”
 属于乐观还是悲观？", "completion": "悲观"}
     \end{verbatim}
-    \item \textbf{数据扩增（可选）}：当可用数据量不足时，可考虑使用数据扩增技术，如同义句生成、数据混合或噪声注入等方法，增加数据多样性，提高模型鲁棒性。
+    \item \textbf{数据扩增（可选）}：当可用数据量不足时，可考虑使用数据扩增技术，如同义句生成、数据混合或噪声注入等方法，增加数据多样性，提高模型鲁棒性（稳定性）。
 \end{enumerate}
 
 关于微调的具体介绍，已保存在项目库中，可进一步查看。
@@ -345,19 +484,18 @@ print(completion.choices[0].message.content)  # 输出首个响应内容
     \end{itemize}
     \end{frame}
     
-    \begin{frame}{案例一：模型微调（Fine-tuning）}
+    \begin{frame}{案例一：实现过程}
     \begin{itemize}
       \item \textbf{思路：} 
       \begin{itemize}
         \item 在通用预训练模型基础上，利用市场回报数据作为情绪标签进行有监督微调。
       \end{itemize}
-      \item \textbf{实现过程：}
+      \item \textbf{具体流程：}
       \begin{enumerate}
-        \item \textbf{选定预训练模型：}如 BERT、ERNIE、RoBERTa 等，下载权重。
+        \item \textbf{选定预训练模型：}如 BERT、ERNIE、RoBERTa 等。
         \item \textbf{标注数据集：}以股票收益正负为情绪标签（0/1 分类），或多档位标签。
-        \item \textbf{训练设置：}设定 batch size、learning rate、epoch 等参数，使用 GPU 训练。
         \item \textbf{模型评估：}分类准确率、F1-score、在样本外的收益预测表现等。
-        \item \textbf{模型部署：}将微调好的模型用于未来新闻文本情绪批量处理。
+        \item \textbf{模型部署：}调用API，将微调好的模型用于未来新闻文本情绪批量处理。
       \end{enumerate}
       \item \textbf{效果：}
       \begin{itemize}
@@ -379,12 +517,12 @@ print(completion.choices[0].message.content)  # 输出首个响应内容
     
     \textbf{核心技术方案：}
     \begin{itemize}
-      \item 采用大语言模型（如 ERNIE）对年报句子逐句判定是否涉及数字技术。
+      \item 采用大语言模型（如 ERNIE）对年报句子逐句判定是否涉及数字技术以及数字技术类型。
       \item 与人工标注结合，“进一步预训练”+ 微调，在构造新指标时更加完备且准确度更高。
     \end{itemize}
     \end{frame}
     
-    \begin{frame}{案例二：模型微调（Fine-tuning）}
+    \begin{frame}{案例二：实现过程}
     \begin{itemize}
       \item \textbf{数据标注：}
       \begin{itemize}
@@ -405,18 +543,18 @@ print(completion.choices[0].message.content)  # 输出首个响应内容
 
 
 %=================================================
-\section{基于LLM的开源项目分享}
+\section{基于大语言模型的开源项目分享}
 %=================================================
 \subsection{Chatbox \& CherryStudio}
-\begin{frame}{Chatbox \& CherryStudio：通过API实现各平台LLM集成}
+\begin{frame}{Chatbox \& CherryStudio：通过API实现各平台大语言模型集成}
   \begin{itemize}
-    \item \textbf{概述:} 基于API调用机制，可以通过上传API的形式，实现各平台LLM的集成。
+    \item \textbf{概述:} 基于API调用机制，可以通过上传API的形式，实现各平台大语言模型的集成。
     \item \textbf{优势:} 将API调用可视化实现类似于网页的功能；热门模型如deepseek网页端经常卡顿，但是使用API调用则不会。
   \end{itemize}
 \end{frame}
 
 \subsection{PDF2zh}
-\begin{frame}{PDF2zh：将LLM引入pdf文献翻译}
+\begin{frame}{PDF2zh：将大语言模型引入pdf文献翻译}
   \begin{itemize}
     \item 已有翻译引擎仅限于机翻，少部分可以使用AI的翻译软件并不能提供全文翻译
     \item 此项目可以将PDF全文翻译为中文，并保留排版格式，方便阅读。
@@ -427,7 +565,7 @@ print(completion.choices[0].message.content)  # 输出首个响应内容
 \subsection{Ollama}
 \begin{frame}{Ollama: 本地开源大模型部署}
   \begin{itemize}
-    \item 依据本地计算机算力，主要受电脑显卡显存于电脑内存限制，可以在本地部署不同的LLM模型。并开放API供用户调用。
+    \item 依据本地计算机算力，主要受电脑显卡显存于电脑内存限制，可以在本地部署不同的大语言模型模型。并开放API供用户调用。
     \item 通过本地调用模型一方面节省了API费用；另一方面，也规避了后续官方模型调整，原实验结果不可复现的局面。
   \end{itemize}
 \end{frame}
@@ -437,8 +575,6 @@ print(completion.choices[0].message.content)  # 输出首个响应内容
   \begin{itemize}
     \item Cursor，Trae: AI powered IDE
     \item 将AI功能集成到IDE中，可以实现代码生成、代码解释、代码调试等功能。
-    \item Storm: 个人知识库构建
-    \item 类似于平台提供的知识库功能，通过提供的文献资料，通过调用LLM接口，生成结构化的报告或新内容。
   \end{itemize}
 \end{frame}
 
