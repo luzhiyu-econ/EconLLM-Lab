@@ -103,7 +103,6 @@ nav:
   - Multi-agent: 
       - autogen: "第六章/autogen.md"
       - coze: "第六章/coze.md"
-  - LLM应用推荐: 
-     - LLM应用推荐: "第七章/LLM_example.md"
+
   - 附录: "附录/README.md"
   - 参考资料: "References.md"
