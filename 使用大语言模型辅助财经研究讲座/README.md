@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-EconLLM-Lab is a repository showcasing how to apply Large Language Models (LLMs) in economics research. This project covers examples of prompt engineering, text classification, sentiment analysis, and other advanced NLP techniques, with a focus on real-world data in economics.
+The directory includes ppt and other references used in a lecture given in CUFE by March 2025.
 
 
 
@@ -27,8 +27,7 @@ EconLLM-Lab is a repository showcasing how to apply Large Language Models (LLMs)
 ## Repository Structure 📂
 
 ```text
-EconLLM-Lab/
-├── .gitignore           # Specifies untracked files
+使用大语言模型辅助财经研究讲座/
 ├── docs/                # Supplementary materials
 │   └── case_studies/    # Detailed use cases
 ├── notebooks/           # Jupyter Notebook experiments
@@ -41,29 +40,6 @@ EconLLM-Lab/
 - `政府采购公告.csv`: Raw government procurement announcements (Chinese)
 - `政府采购公告_结果.csv`: Processed data with LLM-generated labels 
 - Reference PDFs: Curated academic papers on LLM applications in economics
-
----
-
-## Quick Start 🚀
-
-1. **Clone & Setup**
-   ```bash
-   git clone https://github.com/luzhiyu-econ/EconLLM-Lab.git
-   cd EconLLM-Lab
-   ```
-
-2. **Configure API Keys**
-   Create `.env` file:
-   ```ini
-   # .env
-   OPENAI_API_KEY="your-api-key"
-   ```
-
-3. **Run Demo Analysis**
-   Launch Jupyter:
-   ```bash
-   jupyter notebook notebooks/example.ipynb
-   ```
 
 ---
 
