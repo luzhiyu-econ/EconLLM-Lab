@@ -12,6 +12,8 @@ copyright: Copyright &copy; 2025-present <a href="https://github.com/luzhiyu-eco
 theme:
   name: material
   language: zh
+  favicon: figures/logo.ico
+  apple-touch-icon-precomposed: figures/logo.png
   include_search_page: false
   search_index_only: true
 
