@@ -1,0 +1,109 @@
+site_name: EconLLM-Lab
+site_url: https://luzhiyu-econ.github.io/EconLLM-Lab/
+site_author: 陆知雨
+site_description: >-
+  经济学LLM实用指南
+
+repo_name: EconLLM-Lab
+repo_url: https://github.com/luzhiyu-econ/EconLLM-Lab
+
+copyright: Copyright &copy; 2025-present <a href="https://github.com/luzhiyu-econ" target="_blank" rel="noopener noreferrer">陆知雨</a>
+
+theme:
+  name: material
+  language: zh
+  include_search_page: false
+  search_index_only: true
+
+  features:
+    - header.autohide
+    - navigation.tracking
+    - navigation.top
+    - navigation.indexes
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.code.annotate
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep purple
+      toggle:
+        icon: material/brightness-3
+        name: Switch to light mode
+        
+  font:
+    text: Roboto Slab
+    code: Roboto Mono
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  # Python-Markdown 官方扩展
+  - admonition  # 警告、注释等块
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details # 可折叠块
+  - pymdownx.superfences # 增强的代码块，支持嵌套和图表
+
+  # 以下是核心的 Pymdown-Extensions，用于兼容 Typora
+  - pymdownx.tilde: # 支持删除线 ~~del~~ 和下标 ~sub~
+      subscript: true # 启用下标功能，删除线默认开启
+
+  - pymdownx.caret: # 支持上标 ^sup^
+
+  - pymdownx.mark: # 支持高亮 ==mark==
+  
+  - pymdownx.smartsymbols: # 转换特定符号，例如 -> 会变成 →
+  
+  - pymdownx.tasklist: # 支持任务列表 - [x]
+      custom_checkbox: true # 允许自定义复选框样式
+      
+  - pymdownx.emoji: # 支持 emoji 表情 :smile:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      
+  # 其他有用的扩展
+  - attr_list # 为 Markdown 元素添加 HTML 属性
+  - md_in_html # 允许在 HTML 块中使用 Markdown
+
+plugins:    
+  - minify:
+      minify_html: true
+  - open-in-new-tab:
+
+nav:
+  - 序言: "index.md"
+  - 前置知识:
+      - 计算机上手配置: "第一章/quickstart.md"
+      - Python环境配置: "第一章/pythonenv.md"
+      - 学会使用命令行: "第一章/command-line-tools.md"
+  - API调用:
+      - API概述: "第二章/API_intro.md"
+      - 第一次调用API: "第二章/API_python.md"
+      - 多线程方法加速调用: "第二章/Boost_API.md"
+  - 微调训练:
+     - 数据集准备: "第三章/dataPreparation.md"
+     - 模型评估与测试: "第三章/Evaluation.md"
+  - RAG: 
+     - 如何构建与部署知识库: "第四章/RAG.md"
+  - MCP: 
+      - MCP基本结构: "第五章/MCP_intro.md"
+      - MCP示例: "第五章/MCP_example.md"
+  - Multi-agent: 
+      - autogen: "第六章/autogen.md"
+      - coze: "第六章/coze.md"
+  - LLM应用推荐: 
+     - LLM应用推荐: "第七章/LLM_example.md"
+  - 附录: "附录/README.md"
+  - 参考资料: "References.md"
