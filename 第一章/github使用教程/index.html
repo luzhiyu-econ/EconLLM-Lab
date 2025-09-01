@@ -1,0 +1,715 @@
+<!doctype html><html lang=zh class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=经济学LLM实用指南><meta name=author content=陆知雨><link href=https://luzhiyu-econ.github.io/EconLLM-Lab/%E7%AC%AC%E4%B8%80%E7%AB%A0/github%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/ rel=canonical><link href=../command-line-tools/ rel=prev><link href=../../%E7%AC%AC%E4%BA%8C%E7%AB%A0/API_intro/ rel=next><link rel=icon href=../../figures/logo.ico><meta name=generator content="mkdocs-1.6.1, mkdocs-material-9.5.2"><title>学会使用Git - EconLLM-Lab</title><link rel=stylesheet href=../../assets/stylesheets/main.50c56a3b.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.06af60db.min.css><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback"><style>:root{--md-text-font:"Roboto Slab";--md-code-font:"Roboto Mono"}</style><script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=white data-md-color-accent=deep-purple> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#github class=md-skip> 跳转至 </a> </div> <div data-md-component=announce> </div> <header class="md-header md-header--shadow" data-md-component=header> <nav class="md-header__inner md-grid" aria-label=页眉> <a href=../.. title=EconLLM-Lab class="md-header__button md-logo" aria-label=EconLLM-Lab data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> EconLLM-Lab </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> 学会使用Git </span> </div> </div> </div> <form class=md-header__option data-md-component=palette> <input class=md-option data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme=default data-md-color-primary=white data-md-color-accent=deep-purple aria-label="Switch to dark mode" type=radio name=__palette id=__palette_0> <label class="md-header__button md-icon" title="Switch to dark mode" for=__palette_1 hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg> </label> <input class=md-option data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme=slate data-md-color-primary=black data-md-color-accent=deep-purple aria-label="Switch to light mode" type=radio name=__palette id=__palette_1> <label class="md-header__button md-icon" title="Switch to light mode" for=__palette_0 hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.04 7 9.54 0 4.5-2.94 8.27-7 9.54.95.3 1.95.46 3 .46a10 10 0 0 0 10-10A10 10 0 0 0 9 2Z"/></svg> </label> </form> <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script> <div class=md-header__source> <a href=https://github.com/luzhiyu-econ/EconLLM-Lab title=前往仓库 class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </div> <div class=md-source__repository> EconLLM-Lab </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=导航栏 data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../.. title=EconLLM-Lab class="md-nav__button md-logo" aria-label=EconLLM-Lab data-md-component=logo> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg> </a> EconLLM-Lab </label> <div class=md-nav__source> <a href=https://github.com/luzhiyu-econ/EconLLM-Lab title=前往仓库 class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><!-- Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </div> <div class=md-source__repository> EconLLM-Lab </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> <span class=md-ellipsis> 序言 </span> </a> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_2 checked> <label class=md-nav__link for=__nav_2 id=__nav_2_label tabindex=0> <span class=md-ellipsis> 前置知识 </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_2_label aria-expanded=true> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> 前置知识 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../quickstart/ class=md-nav__link> <span class=md-ellipsis> 计算机上手配置 </span> </a> </li> <li class=md-nav__item> <a href=../pythonenv/ class=md-nav__link> <span class=md-ellipsis> Python环境配置 </span> </a> </li> <li class=md-nav__item> <a href=../command-line-tools/ class=md-nav__link> <span class=md-ellipsis> 学会使用命令行 </span> </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> <span class=md-ellipsis> 学会使用Git </span> <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> <span class=md-ellipsis> 学会使用Git </span> </a> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> 目录 </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#_1 class=md-nav__link> <span class=md-ellipsis> 目录 </span> </a> </li> <li class=md-nav__item> <a href=#git class=md-nav__link> <span class=md-ellipsis> 一、Git安装教程 </span> </a> <nav class=md-nav aria-label=一、Git安装教程> <ul class=md-nav__list> <li class=md-nav__item> <a href=#11-git class=md-nav__link> <span class=md-ellipsis> 1.1 Git下载 </span> </a> </li> <li class=md-nav__item> <a href=#12 class=md-nav__link> <span class=md-ellipsis> 1.2 不同系统的安装方式 </span> </a> </li> <li class=md-nav__item> <a href=#13 class=md-nav__link> <span class=md-ellipsis> 1.3 验证安装 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_2 class=md-nav__link> <span class=md-ellipsis> 二、终端环境配置 </span> </a> <nav class=md-nav aria-label=二、终端环境配置> <ul class=md-nav__list> <li class=md-nav__item> <a href=#21-windows class=md-nav__link> <span class=md-ellipsis> 2.1 Windows终端 </span> </a> </li> <li class=md-nav__item> <a href=#22-linux class=md-nav__link> <span class=md-ellipsis> 2.2 Linux终端 </span> </a> </li> <li class=md-nav__item> <a href=#23-macos class=md-nav__link> <span class=md-ellipsis> 2.3 macOS终端 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#git_1 class=md-nav__link> <span class=md-ellipsis> 三、Git基础配置 </span> </a> <nav class=md-nav aria-label=三、Git基础配置> <ul class=md-nav__list> <li class=md-nav__item> <a href=#31 class=md-nav__link> <span class=md-ellipsis> 3.1 全局配置 </span> </a> </li> <li class=md-nav__item> <a href=#32-ssh class=md-nav__link> <span class=md-ellipsis> 3.2 SSH密钥配置 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#github_1 class=md-nav__link> <span class=md-ellipsis> 四、GitHub仓库操作 </span> </a> <nav class=md-nav aria-label=四、GitHub仓库操作> <ul class=md-nav__list> <li class=md-nav__item> <a href=#41-github class=md-nav__link> <span class=md-ellipsis> 4.1 创建GitHub仓库 </span> </a> </li> <li class=md-nav__item> <a href=#42 class=md-nav__link> <span class=md-ellipsis> 4.2 克隆仓库 </span> </a> </li> <li class=md-nav__item> <a href=#43-fork class=md-nav__link> <span class=md-ellipsis> 4.3 Fork仓库 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_3 class=md-nav__link> <span class=md-ellipsis> 五、本地版本控制 </span> </a> <nav class=md-nav aria-label=五、本地版本控制> <ul class=md-nav__list> <li class=md-nav__item> <a href=#51-git class=md-nav__link> <span class=md-ellipsis> 5.1 Git工作区概念 </span> </a> </li> <li class=md-nav__item> <a href=#52 class=md-nav__link> <span class=md-ellipsis> 5.2 基本版本控制操作 </span> </a> </li> <li class=md-nav__item> <a href=#53 class=md-nav__link> <span class=md-ellipsis> 5.3 文件操作 </span> </a> </li> <li class=md-nav__item> <a href=#54 class=md-nav__link> <span class=md-ellipsis> 5.4 比较差异 </span> </a> </li> <li class=md-nav__item> <a href=#55 class=md-nav__link> <span class=md-ellipsis> 5.5 撤销操作 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_4 class=md-nav__link> <span class=md-ellipsis> 六、远程仓库管理 </span> </a> <nav class=md-nav aria-label=六、远程仓库管理> <ul class=md-nav__list> <li class=md-nav__item> <a href=#61 class=md-nav__link> <span class=md-ellipsis> 6.1 远程仓库配置 </span> </a> </li> <li class=md-nav__item> <a href=#62 class=md-nav__link> <span class=md-ellipsis> 6.2 推送操作 </span> </a> </li> <li class=md-nav__item> <a href=#63 class=md-nav__link> <span class=md-ellipsis> 6.3 拉取操作 </span> </a> </li> <li class=md-nav__item> <a href=#64 class=md-nav__link> <span class=md-ellipsis> 6.4 多远程仓库管理 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_5 class=md-nav__link> <span class=md-ellipsis> 七、分支管理 </span> </a> <nav class=md-nav aria-label=七、分支管理> <ul class=md-nav__list> <li class=md-nav__item> <a href=#71 class=md-nav__link> <span class=md-ellipsis> 7.1 分支基础概念 </span> </a> </li> <li class=md-nav__item> <a href=#72 class=md-nav__link> <span class=md-ellipsis> 7.2 分支操作 </span> </a> </li> <li class=md-nav__item> <a href=#73 class=md-nav__link> <span class=md-ellipsis> 7.3 合并分支 </span> </a> </li> <li class=md-nav__item> <a href=#74 class=md-nav__link> <span class=md-ellipsis> 7.4 变基操作 </span> </a> </li> <li class=md-nav__item> <a href=#75 class=md-nav__link> <span class=md-ellipsis> 7.5 分支策略 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_6 class=md-nav__link> <span class=md-ellipsis> 八、协作开发 </span> </a> <nav class=md-nav aria-label=八、协作开发> <ul class=md-nav__list> <li class=md-nav__item> <a href=#81-pull-requestmerge-request class=md-nav__link> <span class=md-ellipsis> 8.1 Pull Request/Merge Request </span> </a> </li> <li class=md-nav__item> <a href=#82 class=md-nav__link> <span class=md-ellipsis> 8.2 代码冲突解决 </span> </a> </li> <li class=md-nav__item> <a href=#83 class=md-nav__link> <span class=md-ellipsis> 8.3 团队协作最佳实践 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_7 class=md-nav__link> <span class=md-ellipsis> 九、常见问题解决 </span> </a> <nav class=md-nav aria-label=九、常见问题解决> <ul class=md-nav__list> <li class=md-nav__item> <a href=#91 class=md-nav__link> <span class=md-ellipsis> 9.1 认证问题 </span> </a> </li> <li class=md-nav__item> <a href=#92 class=md-nav__link> <span class=md-ellipsis> 9.2 同步问题 </span> </a> </li> <li class=md-nav__item> <a href=#93 class=md-nav__link> <span class=md-ellipsis> 9.3 撤销错误操作 </span> </a> </li> <li class=md-nav__item> <a href=#94 class=md-nav__link> <span class=md-ellipsis> 9.4 性能问题 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#git_2 class=md-nav__link> <span class=md-ellipsis> 十、Git命令速查表 </span> </a> <nav class=md-nav aria-label=十、Git命令速查表> <ul class=md-nav__list> <li class=md-nav__item> <a href=#101 class=md-nav__link> <span class=md-ellipsis> 10.1 配置命令 </span> </a> </li> <li class=md-nav__item> <a href=#102 class=md-nav__link> <span class=md-ellipsis> 10.2 基础命令 </span> </a> </li> <li class=md-nav__item> <a href=#103 class=md-nav__link> <span class=md-ellipsis> 10.3 分支命令 </span> </a> </li> <li class=md-nav__item> <a href=#104 class=md-nav__link> <span class=md-ellipsis> 10.4 远程命令 </span> </a> </li> <li class=md-nav__item> <a href=#105 class=md-nav__link> <span class=md-ellipsis> 10.5 撤销命令 </span> </a> </li> <li class=md-nav__item> <a href=#106 class=md-nav__link> <span class=md-ellipsis> 10.6 标签命令 </span> </a> </li> <li class=md-nav__item> <a href=#107 class=md-nav__link> <span class=md-ellipsis> 10.7 实用命令 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_8 class=md-nav__link> <span class=md-ellipsis> 附录 </span> </a> <nav class=md-nav aria-label=附录> <ul class=md-nav__list> <li class=md-nav__item> <a href=#a1-gitignore class=md-nav__link> <span class=md-ellipsis> A.1 .gitignore模板 </span> </a> </li> <li class=md-nav__item> <a href=#a2-git class=md-nav__link> <span class=md-ellipsis> A.2 常用Git别名配置 </span> </a> </li> <li class=md-nav__item> <a href=#a3 class=md-nav__link> <span class=md-ellipsis> A.3 参考资源 </span> </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3 id=__nav_3_label tabindex=0> <span class=md-ellipsis> API调用 </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_3_label aria-expanded=false> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> API调用 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../%E7%AC%AC%E4%BA%8C%E7%AB%A0/API_intro/ class=md-nav__link> <span class=md-ellipsis> API概述 </span> </a> </li> <li class=md-nav__item> <a href=../../%E7%AC%AC%E4%BA%8C%E7%AB%A0/API_python/ class=md-nav__link> <span class=md-ellipsis> 第一次调用API </span> </a> </li> <li class=md-nav__item> <a href=../../%E7%AC%AC%E4%BA%8C%E7%AB%A0/Boost_API/ class=md-nav__link> <span class=md-ellipsis> 多线程方法加速调用 </span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4 id=__nav_4_label tabindex=0> <span class=md-ellipsis> 微调训练 </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_4_label aria-expanded=false> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> 微调训练 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../%E7%AC%AC%E4%B8%89%E7%AB%A0/dataPreparation/ class=md-nav__link> <span class=md-ellipsis> 数据集准备 </span> </a> </li> <li class=md-nav__item> <a href=../../%E7%AC%AC%E4%B8%89%E7%AB%A0/Evaluation/ class=md-nav__link> <span class=md-ellipsis> 模型评估与测试 </span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5 id=__nav_5_label tabindex=0> <span class=md-ellipsis> RAG </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_5_label aria-expanded=false> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> RAG </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../%E7%AC%AC%E5%9B%9B%E7%AB%A0/RAG/ class=md-nav__link> <span class=md-ellipsis> 如何构建与部署知识库 </span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6 id=__nav_6_label tabindex=0> <span class=md-ellipsis> MCP </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_6_label aria-expanded=false> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> MCP </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../%E7%AC%AC%E4%BA%94%E7%AB%A0/MCP_intro/ class=md-nav__link> <span class=md-ellipsis> MCP基本结构 </span> </a> </li> <li class=md-nav__item> <a href=../../%E7%AC%AC%E4%BA%94%E7%AB%A0/MCP_example/ class=md-nav__link> <span class=md-ellipsis> MCP示例 </span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7 id=__nav_7_label tabindex=0> <span class=md-ellipsis> Multi-agent </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_7_label aria-expanded=false> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Multi-agent </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../%E7%AC%AC%E5%85%AD%E7%AB%A0/autogen/ class=md-nav__link> <span class=md-ellipsis> autogen </span> </a> </li> <li class=md-nav__item> <a href=../../%E7%AC%AC%E5%85%AD%E7%AB%A0/coze/ class=md-nav__link> <span class=md-ellipsis> coze </span> </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle " type=checkbox id=__nav_8> <label class=md-nav__link for=__nav_8 id=__nav_8_label tabindex=0> <span class=md-ellipsis> LLM应用推荐 </span> <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav data-md-level=1 aria-labelledby=__nav_8_label aria-expanded=false> <label class=md-nav__title for=__nav_8> <span class="md-nav__icon md-icon"></span> LLM应用推荐 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../%E7%AC%AC%E4%B8%83%E7%AB%A0/LLM_example/ class=md-nav__link> <span class=md-ellipsis> LLM应用推荐 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../%E9%99%84%E5%BD%95/ class=md-nav__link> <span class=md-ellipsis> 附录 </span> </a> </li> <li class=md-nav__item> <a href=../../References/ class=md-nav__link> <span class=md-ellipsis> 参考资料 </span> </a> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> 目录 </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#_1 class=md-nav__link> <span class=md-ellipsis> 目录 </span> </a> </li> <li class=md-nav__item> <a href=#git class=md-nav__link> <span class=md-ellipsis> 一、Git安装教程 </span> </a> <nav class=md-nav aria-label=一、Git安装教程> <ul class=md-nav__list> <li class=md-nav__item> <a href=#11-git class=md-nav__link> <span class=md-ellipsis> 1.1 Git下载 </span> </a> </li> <li class=md-nav__item> <a href=#12 class=md-nav__link> <span class=md-ellipsis> 1.2 不同系统的安装方式 </span> </a> </li> <li class=md-nav__item> <a href=#13 class=md-nav__link> <span class=md-ellipsis> 1.3 验证安装 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_2 class=md-nav__link> <span class=md-ellipsis> 二、终端环境配置 </span> </a> <nav class=md-nav aria-label=二、终端环境配置> <ul class=md-nav__list> <li class=md-nav__item> <a href=#21-windows class=md-nav__link> <span class=md-ellipsis> 2.1 Windows终端 </span> </a> </li> <li class=md-nav__item> <a href=#22-linux class=md-nav__link> <span class=md-ellipsis> 2.2 Linux终端 </span> </a> </li> <li class=md-nav__item> <a href=#23-macos class=md-nav__link> <span class=md-ellipsis> 2.3 macOS终端 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#git_1 class=md-nav__link> <span class=md-ellipsis> 三、Git基础配置 </span> </a> <nav class=md-nav aria-label=三、Git基础配置> <ul class=md-nav__list> <li class=md-nav__item> <a href=#31 class=md-nav__link> <span class=md-ellipsis> 3.1 全局配置 </span> </a> </li> <li class=md-nav__item> <a href=#32-ssh class=md-nav__link> <span class=md-ellipsis> 3.2 SSH密钥配置 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#github_1 class=md-nav__link> <span class=md-ellipsis> 四、GitHub仓库操作 </span> </a> <nav class=md-nav aria-label=四、GitHub仓库操作> <ul class=md-nav__list> <li class=md-nav__item> <a href=#41-github class=md-nav__link> <span class=md-ellipsis> 4.1 创建GitHub仓库 </span> </a> </li> <li class=md-nav__item> <a href=#42 class=md-nav__link> <span class=md-ellipsis> 4.2 克隆仓库 </span> </a> </li> <li class=md-nav__item> <a href=#43-fork class=md-nav__link> <span class=md-ellipsis> 4.3 Fork仓库 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_3 class=md-nav__link> <span class=md-ellipsis> 五、本地版本控制 </span> </a> <nav class=md-nav aria-label=五、本地版本控制> <ul class=md-nav__list> <li class=md-nav__item> <a href=#51-git class=md-nav__link> <span class=md-ellipsis> 5.1 Git工作区概念 </span> </a> </li> <li class=md-nav__item> <a href=#52 class=md-nav__link> <span class=md-ellipsis> 5.2 基本版本控制操作 </span> </a> </li> <li class=md-nav__item> <a href=#53 class=md-nav__link> <span class=md-ellipsis> 5.3 文件操作 </span> </a> </li> <li class=md-nav__item> <a href=#54 class=md-nav__link> <span class=md-ellipsis> 5.4 比较差异 </span> </a> </li> <li class=md-nav__item> <a href=#55 class=md-nav__link> <span class=md-ellipsis> 5.5 撤销操作 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_4 class=md-nav__link> <span class=md-ellipsis> 六、远程仓库管理 </span> </a> <nav class=md-nav aria-label=六、远程仓库管理> <ul class=md-nav__list> <li class=md-nav__item> <a href=#61 class=md-nav__link> <span class=md-ellipsis> 6.1 远程仓库配置 </span> </a> </li> <li class=md-nav__item> <a href=#62 class=md-nav__link> <span class=md-ellipsis> 6.2 推送操作 </span> </a> </li> <li class=md-nav__item> <a href=#63 class=md-nav__link> <span class=md-ellipsis> 6.3 拉取操作 </span> </a> </li> <li class=md-nav__item> <a href=#64 class=md-nav__link> <span class=md-ellipsis> 6.4 多远程仓库管理 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_5 class=md-nav__link> <span class=md-ellipsis> 七、分支管理 </span> </a> <nav class=md-nav aria-label=七、分支管理> <ul class=md-nav__list> <li class=md-nav__item> <a href=#71 class=md-nav__link> <span class=md-ellipsis> 7.1 分支基础概念 </span> </a> </li> <li class=md-nav__item> <a href=#72 class=md-nav__link> <span class=md-ellipsis> 7.2 分支操作 </span> </a> </li> <li class=md-nav__item> <a href=#73 class=md-nav__link> <span class=md-ellipsis> 7.3 合并分支 </span> </a> </li> <li class=md-nav__item> <a href=#74 class=md-nav__link> <span class=md-ellipsis> 7.4 变基操作 </span> </a> </li> <li class=md-nav__item> <a href=#75 class=md-nav__link> <span class=md-ellipsis> 7.5 分支策略 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_6 class=md-nav__link> <span class=md-ellipsis> 八、协作开发 </span> </a> <nav class=md-nav aria-label=八、协作开发> <ul class=md-nav__list> <li class=md-nav__item> <a href=#81-pull-requestmerge-request class=md-nav__link> <span class=md-ellipsis> 8.1 Pull Request/Merge Request </span> </a> </li> <li class=md-nav__item> <a href=#82 class=md-nav__link> <span class=md-ellipsis> 8.2 代码冲突解决 </span> </a> </li> <li class=md-nav__item> <a href=#83 class=md-nav__link> <span class=md-ellipsis> 8.3 团队协作最佳实践 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_7 class=md-nav__link> <span class=md-ellipsis> 九、常见问题解决 </span> </a> <nav class=md-nav aria-label=九、常见问题解决> <ul class=md-nav__list> <li class=md-nav__item> <a href=#91 class=md-nav__link> <span class=md-ellipsis> 9.1 认证问题 </span> </a> </li> <li class=md-nav__item> <a href=#92 class=md-nav__link> <span class=md-ellipsis> 9.2 同步问题 </span> </a> </li> <li class=md-nav__item> <a href=#93 class=md-nav__link> <span class=md-ellipsis> 9.3 撤销错误操作 </span> </a> </li> <li class=md-nav__item> <a href=#94 class=md-nav__link> <span class=md-ellipsis> 9.4 性能问题 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#git_2 class=md-nav__link> <span class=md-ellipsis> 十、Git命令速查表 </span> </a> <nav class=md-nav aria-label=十、Git命令速查表> <ul class=md-nav__list> <li class=md-nav__item> <a href=#101 class=md-nav__link> <span class=md-ellipsis> 10.1 配置命令 </span> </a> </li> <li class=md-nav__item> <a href=#102 class=md-nav__link> <span class=md-ellipsis> 10.2 基础命令 </span> </a> </li> <li class=md-nav__item> <a href=#103 class=md-nav__link> <span class=md-ellipsis> 10.3 分支命令 </span> </a> </li> <li class=md-nav__item> <a href=#104 class=md-nav__link> <span class=md-ellipsis> 10.4 远程命令 </span> </a> </li> <li class=md-nav__item> <a href=#105 class=md-nav__link> <span class=md-ellipsis> 10.5 撤销命令 </span> </a> </li> <li class=md-nav__item> <a href=#106 class=md-nav__link> <span class=md-ellipsis> 10.6 标签命令 </span> </a> </li> <li class=md-nav__item> <a href=#107 class=md-nav__link> <span class=md-ellipsis> 10.7 实用命令 </span> </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_8 class=md-nav__link> <span class=md-ellipsis> 附录 </span> </a> <nav class=md-nav aria-label=附录> <ul class=md-nav__list> <li class=md-nav__item> <a href=#a1-gitignore class=md-nav__link> <span class=md-ellipsis> A.1 .gitignore模板 </span> </a> </li> <li class=md-nav__item> <a href=#a2-git class=md-nav__link> <span class=md-ellipsis> A.2 常用Git别名配置 </span> </a> </li> <li class=md-nav__item> <a href=#a3 class=md-nav__link> <span class=md-ellipsis> A.3 参考资源 </span> </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1 id=github>GitHub使用教程<a class=headerlink href=#github title="Permanent link">&para;</a></h1> <h2 id=_1>目录<a class=headerlink href=#_1 title="Permanent link">&para;</a></h2> <ol> <li><a href=#一git安装教程>Git安装教程</a></li> <li><a href=#二终端环境配置>终端环境配置</a></li> <li><a href=#三git基础配置>Git基础配置</a></li> <li><a href=#四github仓库操作>GitHub仓库操作</a></li> <li><a href=#五本地版本控制>本地版本控制</a></li> <li><a href=#六远程仓库管理>远程仓库管理</a></li> <li><a href=#七分支管理>分支管理</a></li> <li><a href=#八协作开发>协作开发</a></li> <li><a href=#九常见问题解决>常见问题解决</a></li> <li><a href=#十git命令速查表>Git命令速查表</a></li> </ol> <hr> <h2 id=git>一、Git安装教程<a class=headerlink href=#git title="Permanent link">&para;</a></h2> <h3 id=11-git>1.1 Git下载<a class=headerlink href=#11-git title="Permanent link">&para;</a></h3> <p>前往Git官网，选择需要的版本下载即可。下载地址为： - ① <a href=https://git-scm.com>git-scm.com</a> （Git官网，支持Windows、macOS、Linux） - ② <a href=https://gitforwindows.org>gitforwindows.org</a> （仅Windows系统）</p> <p><strong>注意：</strong> - ①为Git官网，进入官网后，点击Downloads，选择自己电脑对应的系统安装即可 - ②只有Windows系统的安装包</p> <h3 id=12>1.2 不同系统的安装方式<a class=headerlink href=#12 title="Permanent link">&para;</a></h3> <h4 id=121-windows>1.2.1 Windows系统安装<a class=headerlink href=#121-windows title="Permanent link">&para;</a></h4> <p>（以Git-2.48.1-64-bit.exe版本为例）</p> <p><strong>步骤1：使用许可声明</strong> 点击Next即可</p> <p><strong>步骤2：选择安装路径</strong> 点击"Browse..."可更改安装位置。建议安装在C盘以外的其他盘（例如D盘等），并注意安装路径中不要出现中文。</p> <p><strong>步骤3：选择安装组件</strong> 根据个人需要进行勾选，建议保持默认设置，然后点击Next</p> <p><strong>步骤4：选择开始菜单文件夹</strong> 无特殊要求点击Next即可。</p> <p><strong>步骤5：选择Git默认编辑器</strong> Git安装程序内置了多种编辑器，如Atom、Notepad、Notepad++、Sublime Text、Visual Studio Code、Vim等。 - 默认是Vim，但操作有难度 - 推荐选择Visual Studio Code（如果已安装） - 新手可选择Notepad++</p> <p><strong>步骤6：决定初始化新项目的主干名字</strong> - 第一种：默认的master - 第二种：自定义，默认是main（推荐）</p> <p><strong>步骤7：调整path环境变量</strong> - 第一种：仅从Git Bash使用Git - 第二种：从命令行以及第三方软件进行Git（推荐） - 第三种：从命令提示符使用Git和可选的Unix工具</p> <p><strong>步骤8：选择SSH执行文件</strong> 选择Git自带的OpenSSH即可（默认选项1）</p> <p><strong>步骤9：选择HTTPS后端传输</strong> 默认第一项，点击Next即可</p> <p><strong>步骤10：配置行尾符号转换</strong> - Windows用户选择第一项 - Mac、Linux用户选择第二项</p> <p><strong>步骤11：配置终端模拟器</strong> 建议选择第一种MinTTY，功能更强大</p> <p><strong>步骤12：选择默认的"git pull"行为</strong> 默认第一项，点击Next即可</p> <p><strong>步骤13：选择凭证帮助程序</strong> 选择第一个选项"Git凭证管理"</p> <p><strong>步骤14：配置额外选项</strong> - 启用文件系统缓存：建议开启 - 启用符号链接：建议不开启</p> <p><strong>步骤15：配置实验性选项</strong> 如果有此步骤，建议都不选择，直接点击Install安装</p> <h4 id=122-macos>1.2.2 macOS系统安装<a class=headerlink href=#122-macos title="Permanent link">&para;</a></h4> <p><strong>方法1：使用Homebrew安装</strong> <div class=highlight><pre><span></span><code><span class=c1># 安装Homebrew（如果未安装）</span>
+/bin/bash<span class=w> </span>-c<span class=w> </span><span class=s2>&quot;</span><span class=k>$(</span>curl<span class=w> </span>-fsSL<span class=w> </span>https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class=k>)</span><span class=s2>&quot;</span>
+
+<span class=c1># 使用Homebrew安装Git</span>
+brew<span class=w> </span>install<span class=w> </span>git
+</code></pre></div></p> <p><strong>方法2：下载安装包</strong> 从<a href=https://git-scm.com>git-scm.com</a>下载macOS安装包，双击安装</p> <p><strong>方法3：使用Xcode Command Line Tools</strong> <div class=highlight><pre><span></span><code>xcode-select<span class=w> </span>--install
+</code></pre></div></p> <h4 id=123-linux>1.2.3 Linux系统安装<a class=headerlink href=#123-linux title="Permanent link">&para;</a></h4> <p><strong>Ubuntu/Debian系统：</strong> <div class=highlight><pre><span></span><code>sudo<span class=w> </span>apt<span class=w> </span>update
+sudo<span class=w> </span>apt<span class=w> </span>install<span class=w> </span>git
+</code></pre></div></p> <p><strong>CentOS/RHEL/Fedora系统：</strong> <div class=highlight><pre><span></span><code><span class=c1># CentOS/RHEL</span>
+sudo<span class=w> </span>yum<span class=w> </span>install<span class=w> </span>git
+
+<span class=c1># Fedora</span>
+sudo<span class=w> </span>dnf<span class=w> </span>install<span class=w> </span>git
+</code></pre></div></p> <p><strong>Arch Linux系统：</strong> <div class=highlight><pre><span></span><code>sudo<span class=w> </span>pacman<span class=w> </span>-S<span class=w> </span>git
+</code></pre></div></p> <h3 id=13>1.3 验证安装<a class=headerlink href=#13 title="Permanent link">&para;</a></h3> <p>安装完成后，在终端/命令行中输入以下命令验证安装： <div class=highlight><pre><span></span><code>git<span class=w> </span>--version
+</code></pre></div></p> <hr> <h2 id=_2>二、终端环境配置<a class=headerlink href=#_2 title="Permanent link">&para;</a></h2> <h3 id=21-windows>2.1 Windows终端<a class=headerlink href=#21-windows title="Permanent link">&para;</a></h3> <h4 id=211-powershell>2.1.1 PowerShell配置<a class=headerlink href=#211-powershell title="Permanent link">&para;</a></h4> <p>Windows 10/11默认使用PowerShell，Git安装后可在PowerShell中直接使用。</p> <p><strong>打开PowerShell的方法：</strong> 1. Win + R，输入<code>powershell</code> 2. Win + X，选择"Windows PowerShell" 3. 在文件夹空白处，Shift + 右键，选择"在此处打开PowerShell窗口"</p> <p><strong>基本命令对比：</strong> | 功能 | PowerShell | Git Bash | CMD | |------|------------|----------|-----| | 列出文件 | <code>ls</code> 或 <code>dir</code> | <code>ls</code> | <code>dir</code> | | 切换目录 | <code>cd</code> | <code>cd</code> | <code>cd</code> | | 创建目录 | <code>mkdir</code> | <code>mkdir</code> | <code>mkdir</code> | | 当前路径 | <code>pwd</code> | <code>pwd</code> | <code>cd</code> |</p> <h4 id=212-git-bash>2.1.2 Git Bash配置<a class=headerlink href=#212-git-bash title="Permanent link">&para;</a></h4> <p>Git Bash是Git for Windows自带的终端，提供Linux风格的命令行体验。</p> <p><strong>特点：</strong> - 支持Linux命令 - 更好的Git集成 - 支持SSH密钥管理</p> <h3 id=22-linux>2.2 Linux终端<a class=headerlink href=#22-linux title="Permanent link">&para;</a></h3> <h4 id=221>2.2.1 常用终端<a class=headerlink href=#221 title="Permanent link">&para;</a></h4> <ul> <li><strong>Bash</strong>：大多数Linux发行版的默认终端</li> <li><strong>Zsh</strong>：功能更强大，支持插件</li> <li><strong>Fish</strong>：用户友好的交互式Shell</li> </ul> <h4 id=222-zsh-oh-my-zsh>2.2.2 Zsh + Oh My Zsh配置（推荐）<a class=headerlink href=#222-zsh-oh-my-zsh title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 安装Zsh</span>
+sudo<span class=w> </span>apt<span class=w> </span>install<span class=w> </span>zsh<span class=w>  </span><span class=c1># Ubuntu/Debian</span>
+sudo<span class=w> </span>yum<span class=w> </span>install<span class=w> </span>zsh<span class=w>  </span><span class=c1># CentOS/RHEL</span>
+
+<span class=c1># 安装Oh My Zsh</span>
+sh<span class=w> </span>-c<span class=w> </span><span class=s2>&quot;</span><span class=k>$(</span>curl<span class=w> </span>-fsSL<span class=w> </span>https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class=k>)</span><span class=s2>&quot;</span>
+
+<span class=c1># 设置为默认Shell</span>
+chsh<span class=w> </span>-s<span class=w> </span><span class=k>$(</span>which<span class=w> </span>zsh<span class=k>)</span>
+</code></pre></div> <h3 id=23-macos>2.3 macOS终端<a class=headerlink href=#23-macos title="Permanent link">&para;</a></h3> <h4 id=231>2.3.1 内置终端<a class=headerlink href=#231 title="Permanent link">&para;</a></h4> <p>macOS自带Terminal应用，默认使用Zsh（macOS Catalina及更高版本）</p> <h4 id=232-iterm2>2.3.2 iTerm2（推荐）<a class=headerlink href=#232-iterm2 title="Permanent link">&para;</a></h4> <p>功能更强大的终端替代品： <div class=highlight><pre><span></span><code><span class=c1># 使用Homebrew安装</span>
+brew<span class=w> </span>install<span class=w> </span>--cask<span class=w> </span>iterm2
+</code></pre></div></p> <h4 id=233-zsh>2.3.3 配置Zsh<a class=headerlink href=#233-zsh title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 安装Oh My Zsh</span>
+sh<span class=w> </span>-c<span class=w> </span><span class=s2>&quot;</span><span class=k>$(</span>curl<span class=w> </span>-fsSL<span class=w> </span>https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class=k>)</span><span class=s2>&quot;</span>
+
+<span class=c1># 安装有用的插件</span>
+git<span class=w> </span>clone<span class=w> </span>https://github.com/zsh-users/zsh-autosuggestions<span class=w> </span><span class=si>${</span><span class=nv>ZSH_CUSTOM</span><span class=k>:-</span><span class=p>~/.oh-my-zsh/custom</span><span class=si>}</span>/plugins/zsh-autosuggestions
+git<span class=w> </span>clone<span class=w> </span>https://github.com/zsh-users/zsh-syntax-highlighting.git<span class=w> </span><span class=si>${</span><span class=nv>ZSH_CUSTOM</span><span class=k>:-</span><span class=p>~/.oh-my-zsh/custom</span><span class=si>}</span>/plugins/zsh-syntax-highlighting
+</code></pre></div> <hr> <h2 id=git_1>三、Git基础配置<a class=headerlink href=#git_1 title="Permanent link">&para;</a></h2> <h3 id=31>3.1 全局配置<a class=headerlink href=#31 title="Permanent link">&para;</a></h3> <p>首次使用Git需要配置用户信息：</p> <div class=highlight><pre><span></span><code><span class=c1># 配置用户名</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>user.name<span class=w> </span><span class=s2>&quot;Your Name&quot;</span>
+
+<span class=c1># 配置邮箱</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>user.email<span class=w> </span><span class=s2>&quot;your.email@example.com&quot;</span>
+
+<span class=c1># 配置默认编辑器</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>core.editor<span class=w> </span><span class=s2>&quot;code --wait&quot;</span><span class=w>  </span><span class=c1># VS Code</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>core.editor<span class=w> </span><span class=s2>&quot;nano&quot;</span><span class=w>         </span><span class=c1># Nano</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>core.editor<span class=w> </span><span class=s2>&quot;vim&quot;</span><span class=w>          </span><span class=c1># Vim</span>
+
+<span class=c1># 配置默认分支名</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>init.defaultBranch<span class=w> </span>main
+
+<span class=c1># 查看配置</span>
+git<span class=w> </span>config<span class=w> </span>--list
+</code></pre></div> <h3 id=32-ssh>3.2 SSH密钥配置<a class=headerlink href=#32-ssh title="Permanent link">&para;</a></h3> <h4 id=321-ssh>3.2.1 生成SSH密钥<a class=headerlink href=#321-ssh title="Permanent link">&para;</a></h4> <p><strong>Windows（PowerShell/Git Bash）：</strong> <div class=highlight><pre><span></span><code><span class=c># PowerShell</span>
+<span class=n>ssh-keygen</span> <span class=n>-t</span> <span class=n>rsa</span> <span class=n>-b</span> <span class=n>4096</span> <span class=n>-C</span> <span class=s2>&quot;your.email@example.com&quot;</span>
+
+<span class=c># 或使用更安全的ed25519算法</span>
+<span class=n>ssh-keygen</span> <span class=n>-t</span> <span class=n>ed25519</span> <span class=n>-C</span> <span class=s2>&quot;your.email@example.com&quot;</span>
+</code></pre></div></p> <p><strong>Linux/macOS：</strong> <div class=highlight><pre><span></span><code><span class=c1># 生成RSA密钥</span>
+ssh-keygen<span class=w> </span>-t<span class=w> </span>rsa<span class=w> </span>-b<span class=w> </span><span class=m>4096</span><span class=w> </span>-C<span class=w> </span><span class=s2>&quot;your.email@example.com&quot;</span>
+
+<span class=c1># 或使用ed25519算法（推荐）</span>
+ssh-keygen<span class=w> </span>-t<span class=w> </span>ed25519<span class=w> </span>-C<span class=w> </span><span class=s2>&quot;your.email@example.com&quot;</span>
+</code></pre></div></p> <h4 id=322-sshssh-agent>3.2.2 添加SSH密钥到ssh-agent<a class=headerlink href=#322-sshssh-agent title="Permanent link">&para;</a></h4> <p><strong>Windows：</strong> <div class=highlight><pre><span></span><code><span class=c># 启动ssh-agent</span>
+<span class=nb>Start-Service</span> <span class=n>ssh-agent</span>
+
+<span class=c># 添加私钥</span>
+<span class=n>ssh-add</span> <span class=p>~/.</span><span class=n>ssh</span><span class=p>/</span><span class=n>id_rsa</span>
+<span class=c># 或</span>
+<span class=n>ssh-add</span> <span class=p>~/.</span><span class=n>ssh</span><span class=p>/</span><span class=n>id_ed25519</span>
+</code></pre></div></p> <p><strong>Linux/macOS：</strong> <div class=highlight><pre><span></span><code><span class=c1># 启动ssh-agent</span>
+<span class=nb>eval</span><span class=w> </span><span class=s2>&quot;</span><span class=k>$(</span>ssh-agent<span class=w> </span>-s<span class=k>)</span><span class=s2>&quot;</span>
+
+<span class=c1># 添加私钥</span>
+ssh-add<span class=w> </span>~/.ssh/id_rsa
+<span class=c1># 或</span>
+ssh-add<span class=w> </span>~/.ssh/id_ed25519
+</code></pre></div></p> <h4 id=323>3.2.3 获取公钥<a class=headerlink href=#323 title="Permanent link">&para;</a></h4> <p><strong>Windows（PowerShell）：</strong> <div class=highlight><pre><span></span><code><span class=nb>Get-Content</span> <span class=p>~/.</span><span class=n>ssh</span><span class=p>/</span><span class=n>id_rsa</span><span class=p>.</span><span class=n>pub</span> <span class=p>|</span> <span class=nb>Set-Clipboard</span>
+<span class=c># 或</span>
+<span class=nb>cat </span><span class=p>~/.</span><span class=n>ssh</span><span class=p>/</span><span class=n>id_rsa</span><span class=p>.</span><span class=n>pub</span>
+</code></pre></div></p> <p><strong>Linux/macOS：</strong> <div class=highlight><pre><span></span><code><span class=c1># 复制到剪贴板</span>
+cat<span class=w> </span>~/.ssh/id_rsa.pub<span class=w> </span><span class=p>|</span><span class=w> </span>pbcopy<span class=w>  </span><span class=c1># macOS</span>
+cat<span class=w> </span>~/.ssh/id_rsa.pub<span class=w> </span><span class=p>|</span><span class=w> </span>xclip<span class=w> </span>-selection<span class=w> </span>clipboard<span class=w>  </span><span class=c1># Linux</span>
+
+<span class=c1># 或直接查看</span>
+cat<span class=w> </span>~/.ssh/id_rsa.pub
+</code></pre></div></p> <h4 id=324-sshgithub>3.2.4 添加SSH密钥到GitHub<a class=headerlink href=#324-sshgithub title="Permanent link">&para;</a></h4> <ol> <li>登录GitHub，点击右上角头像</li> <li>选择"Settings"</li> <li>在左侧菜单选择"SSH and GPG keys"</li> <li>点击"New SSH key"</li> <li>粘贴公钥内容，添加标题</li> <li>点击"Add SSH key"</li> </ol> <h4 id=325-ssh>3.2.5 测试SSH连接<a class=headerlink href=#325-ssh title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>ssh<span class=w> </span>-T<span class=w> </span>git@github.com
+</code></pre></div> <p>成功的话会看到： <div class=highlight><pre><span></span><code>Hi username! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div></p> <hr> <h2 id=github_1>四、GitHub仓库操作<a class=headerlink href=#github_1 title="Permanent link">&para;</a></h2> <h3 id=41-github>4.1 创建GitHub仓库<a class=headerlink href=#41-github title="Permanent link">&para;</a></h3> <h4 id=411-github>4.1.1 在GitHub网站创建<a class=headerlink href=#411-github title="Permanent link">&para;</a></h4> <ol> <li>登录GitHub，点击右上角的"+"</li> <li>选择"New repository"</li> <li>填写仓库名称（Repository name）</li> <li>选择可见性：</li> <li><strong>Public</strong>：公开，所有人可见</li> <li><strong>Private</strong>：私有，仅授权用户可见</li> <li>可选填写描述（Description）</li> <li>选择是否初始化README、.gitignore、License</li> <li>点击"Create repository"</li> </ol> <h4 id=412>4.1.2 从本地推送到新仓库<a class=headerlink href=#412 title="Permanent link">&para;</a></h4> <p><strong>方法1：从现有项目创建仓库</strong> <div class=highlight><pre><span></span><code><span class=c1># 进入项目目录</span>
+<span class=nb>cd</span><span class=w> </span>/path/to/your/project
+
+<span class=c1># 初始化Git仓库</span>
+git<span class=w> </span>init
+
+<span class=c1># 添加远程仓库</span>
+git<span class=w> </span>remote<span class=w> </span>add<span class=w> </span>origin<span class=w> </span>git@github.com:username/repository-name.git
+
+<span class=c1># 添加文件</span>
+git<span class=w> </span>add<span class=w> </span>.
+
+<span class=c1># 提交</span>
+git<span class=w> </span>commit<span class=w> </span>-m<span class=w> </span><span class=s2>&quot;Initial commit&quot;</span>
+
+<span class=c1># 推送到远程仓库</span>
+git<span class=w> </span>branch<span class=w> </span>-M<span class=w> </span>main
+git<span class=w> </span>push<span class=w> </span>-u<span class=w> </span>origin<span class=w> </span>main
+</code></pre></div></p> <p><strong>方法2：克隆空仓库后添加文件</strong> <div class=highlight><pre><span></span><code><span class=c1># 克隆仓库</span>
+git<span class=w> </span>clone<span class=w> </span>git@github.com:username/repository-name.git
+
+<span class=c1># 进入目录</span>
+<span class=nb>cd</span><span class=w> </span>repository-name
+
+<span class=c1># 添加文件</span>
+<span class=c1># ... 添加你的文件 ...</span>
+
+<span class=c1># 提交并推送</span>
+git<span class=w> </span>add<span class=w> </span>.
+git<span class=w> </span>commit<span class=w> </span>-m<span class=w> </span><span class=s2>&quot;Add initial files&quot;</span>
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>main
+</code></pre></div></p> <h3 id=42>4.2 克隆仓库<a class=headerlink href=#42 title="Permanent link">&para;</a></h3> <h4 id=421-ssh>4.2.1 使用SSH克隆（推荐）<a class=headerlink href=#421-ssh title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>git<span class=w> </span>clone<span class=w> </span>git@github.com:username/repository-name.git
+</code></pre></div> <h4 id=422-https>4.2.2 使用HTTPS克隆<a class=headerlink href=#422-https title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>git<span class=w> </span>clone<span class=w> </span>https://github.com/username/repository-name.git
+</code></pre></div> <h4 id=423>4.2.3 克隆到指定目录<a class=headerlink href=#423 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>git<span class=w> </span>clone<span class=w> </span>git@github.com:username/repository-name.git<span class=w> </span>my-project
+</code></pre></div> <h4 id=424>4.2.4 浅克隆（只克隆最新提交）<a class=headerlink href=#424 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>git<span class=w> </span>clone<span class=w> </span>--depth<span class=w> </span><span class=m>1</span><span class=w> </span>git@github.com:username/repository-name.git
+</code></pre></div> <h3 id=43-fork>4.3 Fork仓库<a class=headerlink href=#43-fork title="Permanent link">&para;</a></h3> <h4 id=431-githubfork>4.3.1 在GitHub上Fork<a class=headerlink href=#431-githubfork title="Permanent link">&para;</a></h4> <ol> <li>访问要Fork的仓库页面</li> <li>点击右上角的"Fork"按钮</li> <li>选择Fork到的账户/组织</li> </ol> <h4 id=432-fork>4.3.2 克隆Fork的仓库<a class=headerlink href=#432-fork title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 克隆你Fork的仓库</span>
+git<span class=w> </span>clone<span class=w> </span>git@github.com:yourusername/repository-name.git
+
+<span class=c1># 添加上游仓库</span>
+git<span class=w> </span>remote<span class=w> </span>add<span class=w> </span>upstream<span class=w> </span>git@github.com:originalowner/repository-name.git
+
+<span class=c1># 查看远程仓库</span>
+git<span class=w> </span>remote<span class=w> </span>-v
+</code></pre></div> <h4 id=433-fork>4.3.3 同步Fork的仓库<a class=headerlink href=#433-fork title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 获取上游仓库的更新</span>
+git<span class=w> </span>fetch<span class=w> </span>upstream
+
+<span class=c1># 切换到主分支</span>
+git<span class=w> </span>checkout<span class=w> </span>main
+
+<span class=c1># 合并上游更新</span>
+git<span class=w> </span>merge<span class=w> </span>upstream/main
+
+<span class=c1># 推送到你的Fork</span>
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>main
+</code></pre></div> <hr> <h2 id=_3>五、本地版本控制<a class=headerlink href=#_3 title="Permanent link">&para;</a></h2> <h3 id=51-git>5.1 Git工作区概念<a class=headerlink href=#51-git title="Permanent link">&para;</a></h3> <p>Git有三个主要区域： - <strong>工作区（Working Directory）</strong>：当前工作的文件目录 - <strong>暂存区（Staging Area）</strong>：临时保存改动的区域 - <strong>版本库（Repository）</strong>：存储版本历史的区域</p> <h3 id=52>5.2 基本版本控制操作<a class=headerlink href=#52 title="Permanent link">&para;</a></h3> <h4 id=521>5.2.1 初始化仓库<a class=headerlink href=#521 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 在现有目录初始化</span>
+git<span class=w> </span>init
+
+<span class=c1># 创建新目录并初始化</span>
+git<span class=w> </span>init<span class=w> </span>my-project
+<span class=nb>cd</span><span class=w> </span>my-project
+</code></pre></div> <h4 id=522>5.2.2 查看状态<a class=headerlink href=#522 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 查看工作区状态</span>
+git<span class=w> </span>status
+
+<span class=c1># 简洁模式</span>
+git<span class=w> </span>status<span class=w> </span>-s
+</code></pre></div> <h4 id=523>5.2.3 添加文件到暂存区<a class=headerlink href=#523 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 添加单个文件</span>
+git<span class=w> </span>add<span class=w> </span>filename.txt
+
+<span class=c1># 添加多个文件</span>
+git<span class=w> </span>add<span class=w> </span>file1.txt<span class=w> </span>file2.txt
+
+<span class=c1># 添加所有文件</span>
+git<span class=w> </span>add<span class=w> </span>.
+
+<span class=c1># 添加所有.js文件</span>
+git<span class=w> </span>add<span class=w> </span>*.js
+
+<span class=c1># 交互式添加</span>
+git<span class=w> </span>add<span class=w> </span>-i
+</code></pre></div> <h4 id=524>5.2.4 提交更改<a class=headerlink href=#524 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 提交暂存区的更改</span>
+git<span class=w> </span>commit<span class=w> </span>-m<span class=w> </span><span class=s2>&quot;提交信息&quot;</span>
+
+<span class=c1># 提交并跳过暂存区（仅对已跟踪文件有效）</span>
+git<span class=w> </span>commit<span class=w> </span>-am<span class=w> </span><span class=s2>&quot;提交信息&quot;</span>
+
+<span class=c1># 修改最后一次提交</span>
+git<span class=w> </span>commit<span class=w> </span>--amend<span class=w> </span>-m<span class=w> </span><span class=s2>&quot;修改后的提交信息&quot;</span>
+</code></pre></div> <h4 id=525>5.2.5 查看提交历史<a class=headerlink href=#525 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 查看完整提交历史</span>
+git<span class=w> </span>log
+
+<span class=c1># 一行显示</span>
+git<span class=w> </span>log<span class=w> </span>--oneline
+
+<span class=c1># 图形化显示分支</span>
+git<span class=w> </span>log<span class=w> </span>--graph
+
+<span class=c1># 查看特定文件的历史</span>
+git<span class=w> </span>log<span class=w> </span>filename.txt
+
+<span class=c1># 查看最近3次提交</span>
+git<span class=w> </span>log<span class=w> </span>-3
+
+<span class=c1># 查看提交的详细信息</span>
+git<span class=w> </span>show<span class=w> </span>commit-hash
+</code></pre></div> <h3 id=53>5.3 文件操作<a class=headerlink href=#53 title="Permanent link">&para;</a></h3> <h4 id=531>5.3.1 移除文件<a class=headerlink href=#531 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 从工作区和暂存区删除文件</span>
+git<span class=w> </span>rm<span class=w> </span>filename.txt
+
+<span class=c1># 只从暂存区删除，保留工作区文件</span>
+git<span class=w> </span>rm<span class=w> </span>--cached<span class=w> </span>filename.txt
+
+<span class=c1># 删除目录</span>
+git<span class=w> </span>rm<span class=w> </span>-r<span class=w> </span>directory/
+</code></pre></div> <h4 id=532>5.3.2 移动/重命名文件<a class=headerlink href=#532 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 重命名文件</span>
+git<span class=w> </span>mv<span class=w> </span>old-name.txt<span class=w> </span>new-name.txt
+
+<span class=c1># 移动文件</span>
+git<span class=w> </span>mv<span class=w> </span>filename.txt<span class=w> </span>directory/
+</code></pre></div> <h4 id=533>5.3.3 忽略文件<a class=headerlink href=#533 title="Permanent link">&para;</a></h4> <p>创建<code>.gitignore</code>文件： <div class=highlight><pre><span></span><code># 忽略所有.log文件
+*.log
+
+# 忽略node_modules目录
+node_modules/
+
+# 忽略IDE配置文件
+.vscode/
+.idea/
+
+# 忽略系统文件
+.DS_Store
+Thumbs.db
+
+# 但不忽略特定文件
+!important.log
+</code></pre></div></p> <h3 id=54>5.4 比较差异<a class=headerlink href=#54 title="Permanent link">&para;</a></h3> <h4 id=541>5.4.1 查看工作区与暂存区的差异<a class=headerlink href=#541 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>git<span class=w> </span>diff
+</code></pre></div> <h4 id=542>5.4.2 查看暂存区与最近提交的差异<a class=headerlink href=#542 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>git<span class=w> </span>diff<span class=w> </span>--cached
+</code></pre></div> <h4 id=543>5.4.3 查看工作区与特定提交的差异<a class=headerlink href=#543 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>git<span class=w> </span>diff<span class=w> </span>HEAD
+git<span class=w> </span>diff<span class=w> </span>commit-hash
+</code></pre></div> <h4 id=544>5.4.4 比较两个提交<a class=headerlink href=#544 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>git<span class=w> </span>diff<span class=w> </span>commit1<span class=w> </span>commit2
+</code></pre></div> <h3 id=55>5.5 撤销操作<a class=headerlink href=#55 title="Permanent link">&para;</a></h3> <h4 id=551>5.5.1 撤销工作区的修改<a class=headerlink href=#551 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 撤销单个文件的修改</span>
+git<span class=w> </span>checkout<span class=w> </span>--<span class=w> </span>filename.txt
+
+<span class=c1># 撤销所有修改</span>
+git<span class=w> </span>checkout<span class=w> </span>--<span class=w> </span>.
+
+<span class=c1># 新语法（Git 2.23+）</span>
+git<span class=w> </span>restore<span class=w> </span>filename.txt
+git<span class=w> </span>restore<span class=w> </span>.
+</code></pre></div> <h4 id=552>5.5.2 撤销暂存区的修改<a class=headerlink href=#552 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 取消暂存单个文件</span>
+git<span class=w> </span>reset<span class=w> </span>HEAD<span class=w> </span>filename.txt
+
+<span class=c1># 取消暂存所有文件</span>
+git<span class=w> </span>reset<span class=w> </span>HEAD
+
+<span class=c1># 新语法（Git 2.23+）</span>
+git<span class=w> </span>restore<span class=w> </span>--staged<span class=w> </span>filename.txt
+git<span class=w> </span>restore<span class=w> </span>--staged<span class=w> </span>.
+</code></pre></div> <h4 id=553>5.5.3 撤销提交<a class=headerlink href=#553 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 撤销最近一次提交，保留修改在工作区</span>
+git<span class=w> </span>reset<span class=w> </span>--soft<span class=w> </span>HEAD^
+
+<span class=c1># 撤销最近一次提交，修改放入暂存区</span>
+git<span class=w> </span>reset<span class=w> </span>--mixed<span class=w> </span>HEAD^
+
+<span class=c1># 完全撤销最近一次提交</span>
+git<span class=w> </span>reset<span class=w> </span>--hard<span class=w> </span>HEAD^
+
+<span class=c1># 撤销到特定提交</span>
+git<span class=w> </span>reset<span class=w> </span>--hard<span class=w> </span>commit-hash
+</code></pre></div> <h4 id=554>5.5.4 创建新提交来撤销<a class=headerlink href=#554 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 安全地撤销特定提交</span>
+git<span class=w> </span>revert<span class=w> </span>commit-hash
+
+<span class=c1># 撤销最近一次提交</span>
+git<span class=w> </span>revert<span class=w> </span>HEAD
+</code></pre></div> <hr> <h2 id=_4>六、远程仓库管理<a class=headerlink href=#_4 title="Permanent link">&para;</a></h2> <h3 id=61>6.1 远程仓库配置<a class=headerlink href=#61 title="Permanent link">&para;</a></h3> <h4 id=611>6.1.1 查看远程仓库<a class=headerlink href=#611 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 查看远程仓库列表</span>
+git<span class=w> </span>remote
+
+<span class=c1># 查看远程仓库详细信息</span>
+git<span class=w> </span>remote<span class=w> </span>-v
+
+<span class=c1># 查看特定远程仓库信息</span>
+git<span class=w> </span>remote<span class=w> </span>show<span class=w> </span>origin
+</code></pre></div> <h4 id=612>6.1.2 添加远程仓库<a class=headerlink href=#612 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 添加远程仓库</span>
+git<span class=w> </span>remote<span class=w> </span>add<span class=w> </span>origin<span class=w> </span>git@github.com:username/repository.git
+
+<span class=c1># 添加多个远程仓库</span>
+git<span class=w> </span>remote<span class=w> </span>add<span class=w> </span>upstream<span class=w> </span>git@github.com:upstream/repository.git
+</code></pre></div> <h4 id=613-url>6.1.3 修改远程仓库URL<a class=headerlink href=#613-url title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 修改远程仓库URL</span>
+git<span class=w> </span>remote<span class=w> </span>set-url<span class=w> </span>origin<span class=w> </span>git@github.com:username/new-repository.git
+
+<span class=c1># 从HTTPS切换到SSH</span>
+git<span class=w> </span>remote<span class=w> </span>set-url<span class=w> </span>origin<span class=w> </span>git@github.com:username/repository.git
+</code></pre></div> <h4 id=614>6.1.4 删除远程仓库<a class=headerlink href=#614 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>git<span class=w> </span>remote<span class=w> </span>remove<span class=w> </span>origin
+</code></pre></div> <h3 id=62>6.2 推送操作<a class=headerlink href=#62 title="Permanent link">&para;</a></h3> <h4 id=621>6.2.1 推送到远程仓库<a class=headerlink href=#621 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 推送当前分支到对应远程分支</span>
+git<span class=w> </span>push
+
+<span class=c1># 首次推送，建立跟踪关系</span>
+git<span class=w> </span>push<span class=w> </span>-u<span class=w> </span>origin<span class=w> </span>main
+
+<span class=c1># 推送特定分支</span>
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>feature-branch
+
+<span class=c1># 推送所有分支</span>
+git<span class=w> </span>push<span class=w> </span>--all<span class=w> </span>origin
+
+<span class=c1># 强制推送（危险操作）</span>
+git<span class=w> </span>push<span class=w> </span>--force<span class=w> </span>origin<span class=w> </span>main
+git<span class=w> </span>push<span class=w> </span>-f<span class=w> </span>origin<span class=w> </span>main
+
+<span class=c1># 安全的强制推送</span>
+git<span class=w> </span>push<span class=w> </span>--force-with-lease<span class=w> </span>origin<span class=w> </span>main
+</code></pre></div> <h4 id=622>6.2.2 推送标签<a class=headerlink href=#622 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 推送单个标签</span>
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>v1.0.0
+
+<span class=c1># 推送所有标签</span>
+git<span class=w> </span>push<span class=w> </span>--tags<span class=w> </span>origin
+</code></pre></div> <h3 id=63>6.3 拉取操作<a class=headerlink href=#63 title="Permanent link">&para;</a></h3> <h4 id=631>6.3.1 获取远程更新<a class=headerlink href=#631 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 获取远程仓库的更新（不合并）</span>
+git<span class=w> </span>fetch<span class=w> </span>origin
+
+<span class=c1># 获取所有远程仓库的更新</span>
+git<span class=w> </span>fetch<span class=w> </span>--all
+
+<span class=c1># 获取并删除远程已删除的分支</span>
+git<span class=w> </span>fetch<span class=w> </span>--prune<span class=w> </span>origin
+</code></pre></div> <h4 id=632>6.3.2 拉取并合并<a class=headerlink href=#632 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 拉取并合并当前分支</span>
+git<span class=w> </span>pull
+
+<span class=c1># 拉取特定分支并合并</span>
+git<span class=w> </span>pull<span class=w> </span>origin<span class=w> </span>main
+
+<span class=c1># 使用rebase方式拉取</span>
+git<span class=w> </span>pull<span class=w> </span>--rebase<span class=w> </span>origin<span class=w> </span>main
+</code></pre></div> <h3 id=64>6.4 多远程仓库管理<a class=headerlink href=#64 title="Permanent link">&para;</a></h3> <h4 id=641-fork>6.4.1 典型的Fork工作流<a class=headerlink href=#641-fork title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 添加原始仓库为upstream</span>
+git<span class=w> </span>remote<span class=w> </span>add<span class=w> </span>upstream<span class=w> </span>git@github.com:original/repository.git
+
+<span class=c1># 从upstream获取更新</span>
+git<span class=w> </span>fetch<span class=w> </span>upstream
+
+<span class=c1># 合并upstream的更新到本地main分支</span>
+git<span class=w> </span>checkout<span class=w> </span>main
+git<span class=w> </span>merge<span class=w> </span>upstream/main
+
+<span class=c1># 推送到自己的Fork</span>
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>main
+</code></pre></div> <h4 id=642>6.4.2 不同远程仓库的操作<a class=headerlink href=#642 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 从upstream拉取</span>
+git<span class=w> </span>pull<span class=w> </span>upstream<span class=w> </span>main
+
+<span class=c1># 推送到origin</span>
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>main
+
+<span class=c1># 推送到不同的远程仓库</span>
+git<span class=w> </span>push<span class=w> </span>backup<span class=w> </span>main
+</code></pre></div> <hr> <h2 id=_5>七、分支管理<a class=headerlink href=#_5 title="Permanent link">&para;</a></h2> <h3 id=71>7.1 分支基础概念<a class=headerlink href=#71 title="Permanent link">&para;</a></h3> <p>分支是Git最强大的功能之一，允许你在不影响主代码的情况下开发新功能。</p> <h3 id=72>7.2 分支操作<a class=headerlink href=#72 title="Permanent link">&para;</a></h3> <h4 id=721>7.2.1 查看分支<a class=headerlink href=#721 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 查看本地分支</span>
+git<span class=w> </span>branch
+
+<span class=c1># 查看所有分支（包括远程）</span>
+git<span class=w> </span>branch<span class=w> </span>-a
+
+<span class=c1># 查看远程分支</span>
+git<span class=w> </span>branch<span class=w> </span>-r
+
+<span class=c1># 查看分支详细信息</span>
+git<span class=w> </span>branch<span class=w> </span>-v
+
+<span class=c1># 查看已合并的分支</span>
+git<span class=w> </span>branch<span class=w> </span>--merged
+
+<span class=c1># 查看未合并的分支</span>
+git<span class=w> </span>branch<span class=w> </span>--no-merged
+</code></pre></div> <h4 id=722>7.2.2 创建分支<a class=headerlink href=#722 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 创建新分支</span>
+git<span class=w> </span>branch<span class=w> </span>feature-login
+
+<span class=c1># 创建并切换到新分支</span>
+git<span class=w> </span>checkout<span class=w> </span>-b<span class=w> </span>feature-login
+
+<span class=c1># 新语法（Git 2.23+）</span>
+git<span class=w> </span>switch<span class=w> </span>-c<span class=w> </span>feature-login
+
+<span class=c1># 从特定提交创建分支</span>
+git<span class=w> </span>checkout<span class=w> </span>-b<span class=w> </span>hotfix<span class=w> </span>commit-hash
+</code></pre></div> <h4 id=723>7.2.3 切换分支<a class=headerlink href=#723 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 切换分支</span>
+git<span class=w> </span>checkout<span class=w> </span>feature-login
+
+<span class=c1># 新语法（Git 2.23+）</span>
+git<span class=w> </span>switch<span class=w> </span>feature-login
+
+<span class=c1># 切换到上一个分支</span>
+git<span class=w> </span>checkout<span class=w> </span>-
+git<span class=w> </span>switch<span class=w> </span>-
+</code></pre></div> <h4 id=724>7.2.4 删除分支<a class=headerlink href=#724 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 删除已合并的分支</span>
+git<span class=w> </span>branch<span class=w> </span>-d<span class=w> </span>feature-login
+
+<span class=c1># 强制删除分支</span>
+git<span class=w> </span>branch<span class=w> </span>-D<span class=w> </span>feature-login
+
+<span class=c1># 删除远程分支</span>
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>--delete<span class=w> </span>feature-login
+</code></pre></div> <h3 id=73>7.3 合并分支<a class=headerlink href=#73 title="Permanent link">&para;</a></h3> <h4 id=731>7.3.1 普通合并<a class=headerlink href=#731 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 切换到目标分支</span>
+git<span class=w> </span>checkout<span class=w> </span>main
+
+<span class=c1># 合并分支</span>
+git<span class=w> </span>merge<span class=w> </span>feature-login
+</code></pre></div> <h4 id=732>7.3.2 快进合并<a class=headerlink href=#732 title="Permanent link">&para;</a></h4> <p>当目标分支没有新提交时，Git会进行快进合并： <div class=highlight><pre><span></span><code>git<span class=w> </span>merge<span class=w> </span>feature-login<span class=w>  </span><span class=c1># 快进合并</span>
+</code></pre></div></p> <h4 id=733>7.3.3 禁用快进合并<a class=headerlink href=#733 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 总是创建合并提交</span>
+git<span class=w> </span>merge<span class=w> </span>--no-ff<span class=w> </span>feature-login
+</code></pre></div> <h4 id=734>7.3.4 压缩合并<a class=headerlink href=#734 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 将多个提交压缩为一个</span>
+git<span class=w> </span>merge<span class=w> </span>--squash<span class=w> </span>feature-login
+git<span class=w> </span>commit<span class=w> </span>-m<span class=w> </span><span class=s2>&quot;Add login feature&quot;</span>
+</code></pre></div> <h3 id=74>7.4 变基操作<a class=headerlink href=#74 title="Permanent link">&para;</a></h3> <h4 id=741>7.4.1 基本变基<a class=headerlink href=#741 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 将当前分支变基到main</span>
+git<span class=w> </span>rebase<span class=w> </span>main
+
+<span class=c1># 变基特定分支</span>
+git<span class=w> </span>rebase<span class=w> </span>main<span class=w> </span>feature-branch
+</code></pre></div> <h4 id=742>7.4.2 交互式变基<a class=headerlink href=#742 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 修改最近3个提交</span>
+git<span class=w> </span>rebase<span class=w> </span>-i<span class=w> </span>HEAD~3
+
+<span class=c1># 从特定提交开始变基</span>
+git<span class=w> </span>rebase<span class=w> </span>-i<span class=w> </span>commit-hash
+</code></pre></div> <p>在交互式变基中，你可以： - <code>pick</code>：保留提交 - <code>reword</code>：修改提交信息 - <code>edit</code>：编辑提交 - <code>squash</code>：合并到前一个提交 - <code>drop</code>：删除提交</p> <h4 id=743>7.4.3 解决变基冲突<a class=headerlink href=#743 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 解决冲突后继续变基</span>
+git<span class=w> </span>rebase<span class=w> </span>--continue
+
+<span class=c1># 跳过当前提交</span>
+git<span class=w> </span>rebase<span class=w> </span>--skip
+
+<span class=c1># 中止变基</span>
+git<span class=w> </span>rebase<span class=w> </span>--abort
+</code></pre></div> <h3 id=75>7.5 分支策略<a class=headerlink href=#75 title="Permanent link">&para;</a></h3> <h4 id=751-git-flow>7.5.1 Git Flow<a class=headerlink href=#751-git-flow title="Permanent link">&para;</a></h4> <ul> <li><strong>main</strong>：主分支，只包含发布版本</li> <li><strong>develop</strong>：开发分支，包含最新开发进度</li> <li><strong>feature/</strong>：功能分支，从develop分出</li> <li><strong>release/</strong>：发布分支，准备发布时从develop分出</li> <li><strong>hotfix/</strong>：热修复分支，从main分出</li> </ul> <h4 id=752-github-flow>7.5.2 GitHub Flow<a class=headerlink href=#752-github-flow title="Permanent link">&para;</a></h4> <ul> <li><strong>main</strong>：主分支，永远保持可部署状态</li> <li><strong>feature/</strong>：功能分支，完成后通过Pull Request合并到main</li> </ul> <h4 id=753-gitlab-flow>7.5.3 GitLab Flow<a class=headerlink href=#753-gitlab-flow title="Permanent link">&para;</a></h4> <p>结合了上述两种策略的优点，适用于持续部署。</p> <hr> <h2 id=_6>八、协作开发<a class=headerlink href=#_6 title="Permanent link">&para;</a></h2> <h3 id=81-pull-requestmerge-request>8.1 Pull Request/Merge Request<a class=headerlink href=#81-pull-requestmerge-request title="Permanent link">&para;</a></h3> <h4 id=811-pull-request>8.1.1 创建Pull Request<a class=headerlink href=#811-pull-request title="Permanent link">&para;</a></h4> <ol> <li>推送功能分支到远程仓库</li> <li>在GitHub上创建Pull Request</li> <li>填写PR标题和描述</li> <li>选择审核者</li> <li>等待代码审核</li> </ol> <h4 id=812>8.1.2 代码审核<a class=headerlink href=#812 title="Permanent link">&para;</a></h4> <p>作为审核者： 1. 查看代码变更 2. 添加评论和建议 3. 批准或请求修改 4. 合并PR</p> <h4 id=813>8.1.3 处理审核反馈<a class=headerlink href=#813 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 在功能分支上修改代码</span>
+git<span class=w> </span>checkout<span class=w> </span>feature-branch
+
+<span class=c1># 添加修改</span>
+git<span class=w> </span>add<span class=w> </span>.
+git<span class=w> </span>commit<span class=w> </span>-m<span class=w> </span><span class=s2>&quot;Address review comments&quot;</span>
+
+<span class=c1># 推送更新</span>
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>feature-branch
+</code></pre></div> <h3 id=82>8.2 代码冲突解决<a class=headerlink href=#82 title="Permanent link">&para;</a></h3> <h4 id=821>8.2.1 合并冲突<a class=headerlink href=#821 title="Permanent link">&para;</a></h4> <p>当两个分支修改了同一文件的同一部分时会产生冲突：</p> <div class=highlight><pre><span></span><code><span class=c1># 尝试合并时出现冲突</span>
+git<span class=w> </span>merge<span class=w> </span>feature-branch
+
+<span class=c1># 查看冲突文件</span>
+git<span class=w> </span>status
+
+<span class=c1># 手动编辑冲突文件，选择保留的内容</span>
+<span class=c1># 冲突标记：</span>
+<span class=c1># &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
+<span class=c1># 当前分支的内容</span>
+<span class=c1># =======</span>
+<span class=c1># 要合并分支的内容</span>
+<span class=c1># &gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-branch</span>
+
+<span class=c1># 解决冲突后添加文件</span>
+git<span class=w> </span>add<span class=w> </span>conflicted-file.txt
+
+<span class=c1># 完成合并</span>
+git<span class=w> </span>commit
+</code></pre></div> <h4 id=822>8.2.2 变基冲突<a class=headerlink href=#822 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 变基过程中出现冲突</span>
+git<span class=w> </span>rebase<span class=w> </span>main
+
+<span class=c1># 解决冲突后继续</span>
+git<span class=w> </span>add<span class=w> </span>.
+git<span class=w> </span>rebase<span class=w> </span>--continue
+</code></pre></div> <h4 id=823>8.2.3 使用工具解决冲突<a class=headerlink href=#823 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 配置合并工具</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>merge.tool<span class=w> </span>vimdiff
+
+<span class=c1># 使用工具解决冲突</span>
+git<span class=w> </span>mergetool
+</code></pre></div> <h3 id=83>8.3 团队协作最佳实践<a class=headerlink href=#83 title="Permanent link">&para;</a></h3> <h4 id=831>8.3.1 提交信息规范<a class=headerlink href=#831 title="Permanent link">&para;</a></h4> <p>使用约定式提交（Conventional Commits）： <div class=highlight><pre><span></span><code>&lt;type&gt;[optional scope]: &lt;description&gt;
+
+[optional body]
+
+[optional footer]
+</code></pre></div></p> <p>类型： - <code>feat</code>：新功能 - <code>fix</code>：修复bug - <code>docs</code>：文档更新 - <code>style</code>：代码格式 - <code>refactor</code>：重构 - <code>test</code>：测试 - <code>chore</code>：构建/工具相关</p> <p>示例： <div class=highlight><pre><span></span><code>feat(auth): add login functionality
+
+Add user authentication with email and password.
+Includes password hashing and JWT token generation.
+
+Closes #123
+</code></pre></div></p> <h4 id=832>8.3.2 分支命名规范<a class=headerlink href=#832 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>feature/user-authentication
+bugfix/login-error
+hotfix/security-patch
+release/v1.2.0
+</code></pre></div> <h4 id=833>8.3.3 代码审核清单<a class=headerlink href=#833 title="Permanent link">&para;</a></h4> <ul class=task-list> <li class=task-list-item><label class=task-list-control><input type=checkbox disabled><span class=task-list-indicator></span></label> 代码功能正确</li> <li class=task-list-item><label class=task-list-control><input type=checkbox disabled><span class=task-list-indicator></span></label> 代码风格一致</li> <li class=task-list-item><label class=task-list-control><input type=checkbox disabled><span class=task-list-indicator></span></label> 有适当的测试</li> <li class=task-list-item><label class=task-list-control><input type=checkbox disabled><span class=task-list-indicator></span></label> 文档已更新</li> <li class=task-list-item><label class=task-list-control><input type=checkbox disabled><span class=task-list-indicator></span></label> 没有敏感信息</li> <li class=task-list-item><label class=task-list-control><input type=checkbox disabled><span class=task-list-indicator></span></label> 性能影响可接受</li> </ul> <hr> <h2 id=_7>九、常见问题解决<a class=headerlink href=#_7 title="Permanent link">&para;</a></h2> <h3 id=91>9.1 认证问题<a class=headerlink href=#91 title="Permanent link">&para;</a></h3> <h4 id=911-ssh>9.1.1 SSH密钥问题<a class=headerlink href=#911-ssh title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 测试SSH连接</span>
+ssh<span class=w> </span>-T<span class=w> </span>git@github.com
+
+<span class=c1># 如果失败，检查SSH代理</span>
+ssh-add<span class=w> </span>-l
+
+<span class=c1># 重新添加密钥</span>
+ssh-add<span class=w> </span>~/.ssh/id_rsa
+</code></pre></div> <h4 id=912-https>9.1.2 HTTPS认证问题<a class=headerlink href=#912-https title="Permanent link">&para;</a></h4> <p>从2021年8月13日起，GitHub不再接受密码认证，需要使用个人访问令牌（PAT）。</p> <p>创建PAT： 1. GitHub Settings → Developer settings → Personal access tokens 2. 生成新令牌，设置适当权限 3. 使用令牌代替密码</p> <h4 id=913>9.1.3 缓存凭据<a class=headerlink href=#913 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># Windows</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>credential.helper<span class=w> </span>manager
+
+<span class=c1># macOS</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>credential.helper<span class=w> </span>osxkeychain
+
+<span class=c1># Linux</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>credential.helper<span class=w> </span>cache
+</code></pre></div> <h3 id=92>9.2 同步问题<a class=headerlink href=#92 title="Permanent link">&para;</a></h3> <h4 id=921>9.2.1 本地落后于远程<a class=headerlink href=#921 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 拉取最新更改</span>
+git<span class=w> </span>pull<span class=w> </span>origin<span class=w> </span>main
+
+<span class=c1># 如果有本地修改，使用rebase</span>
+git<span class=w> </span>pull<span class=w> </span>--rebase<span class=w> </span>origin<span class=w> </span>main
+</code></pre></div> <h4 id=922>9.2.2 本地超前于远程<a class=headerlink href=#922 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 推送本地更改</span>
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>main
+
+<span class=c1># 如果被拒绝，先拉取再推送</span>
+git<span class=w> </span>pull<span class=w> </span>origin<span class=w> </span>main
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>main
+</code></pre></div> <h4 id=923>9.2.3 分叉历史<a class=headerlink href=#923 title="Permanent link">&para;</a></h4> <p>当本地和远程有不同的提交历史时： <div class=highlight><pre><span></span><code><span class=c1># 允许无关历史合并</span>
+git<span class=w> </span>pull<span class=w> </span>origin<span class=w> </span>main<span class=w> </span>--allow-unrelated-histories
+</code></pre></div></p> <h3 id=93>9.3 撤销错误操作<a class=headerlink href=#93 title="Permanent link">&para;</a></h3> <h4 id=931>9.3.1 撤销错误的提交<a class=headerlink href=#931 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 查看提交历史</span>
+git<span class=w> </span>log<span class=w> </span>--oneline
+
+<span class=c1># 撤销到特定提交</span>
+git<span class=w> </span>reset<span class=w> </span>--hard<span class=w> </span>commit-hash
+
+<span class=c1># 如果已经推送，使用revert</span>
+git<span class=w> </span>revert<span class=w> </span>commit-hash
+</code></pre></div> <h4 id=932>9.3.2 恢复删除的分支<a class=headerlink href=#932 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 查看引用日志</span>
+git<span class=w> </span>reflog
+
+<span class=c1># 恢复分支</span>
+git<span class=w> </span>checkout<span class=w> </span>-b<span class=w> </span>recovered-branch<span class=w> </span>commit-hash
+</code></pre></div> <h4 id=933>9.3.3 修复错误的合并<a class=headerlink href=#933 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 如果还没推送</span>
+git<span class=w> </span>reset<span class=w> </span>--hard<span class=w> </span>HEAD~1
+
+<span class=c1># 如果已经推送</span>
+git<span class=w> </span>revert<span class=w> </span>-m<span class=w> </span><span class=m>1</span><span class=w> </span>merge-commit-hash
+</code></pre></div> <h3 id=94>9.4 性能问题<a class=headerlink href=#94 title="Permanent link">&para;</a></h3> <h4 id=941>9.4.1 仓库太大<a class=headerlink href=#941 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 清理不必要的文件</span>
+git<span class=w> </span>gc<span class=w> </span>--prune<span class=o>=</span>now
+
+<span class=c1># 查看仓库大小</span>
+git<span class=w> </span>count-objects<span class=w> </span>-vH
+
+<span class=c1># 移除大文件历史</span>
+git<span class=w> </span>filter-branch<span class=w> </span>--force<span class=w> </span>--index-filter<span class=w> </span><span class=se>\</span>
+<span class=w>  </span><span class=s1>&#39;git rm --cached --ignore-unmatch large-file.bin&#39;</span><span class=w> </span><span class=se>\</span>
+<span class=w>  </span>--prune-empty<span class=w> </span>--tag-name-filter<span class=w> </span>cat<span class=w> </span>--<span class=w> </span>--all
+</code></pre></div> <h4 id=942>9.4.2 网络问题<a class=headerlink href=#942 title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># 浅克隆</span>
+git<span class=w> </span>clone<span class=w> </span>--depth<span class=w> </span><span class=m>1</span><span class=w> </span>repo-url
+
+<span class=c1># 部分克隆</span>
+git<span class=w> </span>clone<span class=w> </span>--filter<span class=o>=</span>blob:none<span class=w> </span>repo-url
+
+<span class=c1># 配置代理</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>http.proxy<span class=w> </span>http://proxy:8080
+</code></pre></div> <hr> <h2 id=git_2>十、Git命令速查表<a class=headerlink href=#git_2 title="Permanent link">&para;</a></h2> <h3 id=101>10.1 配置命令<a class=headerlink href=#101 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># 设置用户信息</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>user.name<span class=w> </span><span class=s2>&quot;用户名&quot;</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>user.email<span class=w> </span><span class=s2>&quot;邮箱&quot;</span>
+
+<span class=c1># 查看配置</span>
+git<span class=w> </span>config<span class=w> </span>--list
+git<span class=w> </span>config<span class=w> </span>user.name
+
+<span class=c1># 设置别名</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>alias.st<span class=w> </span>status
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>alias.co<span class=w> </span>checkout
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>alias.br<span class=w> </span>branch
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>alias.ci<span class=w> </span>commit
+</code></pre></div> <h3 id=102>10.2 基础命令<a class=headerlink href=#102 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># 初始化仓库</span>
+git<span class=w> </span>init
+
+<span class=c1># 克隆仓库</span>
+git<span class=w> </span>clone<span class=w> </span>&lt;url&gt;
+
+<span class=c1># 查看状态</span>
+git<span class=w> </span>status
+
+<span class=c1># 添加文件</span>
+git<span class=w> </span>add<span class=w> </span>&lt;file&gt;
+git<span class=w> </span>add<span class=w> </span>.
+
+<span class=c1># 提交</span>
+git<span class=w> </span>commit<span class=w> </span>-m<span class=w> </span><span class=s2>&quot;消息&quot;</span>
+git<span class=w> </span>commit<span class=w> </span>-am<span class=w> </span><span class=s2>&quot;消息&quot;</span>
+
+<span class=c1># 查看历史</span>
+git<span class=w> </span>log
+git<span class=w> </span>log<span class=w> </span>--oneline
+git<span class=w> </span>log<span class=w> </span>--graph
+</code></pre></div> <h3 id=103>10.3 分支命令<a class=headerlink href=#103 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># 查看分支</span>
+git<span class=w> </span>branch
+git<span class=w> </span>branch<span class=w> </span>-a
+
+<span class=c1># 创建分支</span>
+git<span class=w> </span>branch<span class=w> </span>&lt;name&gt;
+git<span class=w> </span>checkout<span class=w> </span>-b<span class=w> </span>&lt;name&gt;
+
+<span class=c1># 切换分支</span>
+git<span class=w> </span>checkout<span class=w> </span>&lt;name&gt;
+git<span class=w> </span>switch<span class=w> </span>&lt;name&gt;
+
+<span class=c1># 合并分支</span>
+git<span class=w> </span>merge<span class=w> </span>&lt;branch&gt;
+
+<span class=c1># 删除分支</span>
+git<span class=w> </span>branch<span class=w> </span>-d<span class=w> </span>&lt;name&gt;
+git<span class=w> </span>branch<span class=w> </span>-D<span class=w> </span>&lt;name&gt;
+</code></pre></div> <h3 id=104>10.4 远程命令<a class=headerlink href=#104 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># 查看远程仓库</span>
+git<span class=w> </span>remote<span class=w> </span>-v
+
+<span class=c1># 添加远程仓库</span>
+git<span class=w> </span>remote<span class=w> </span>add<span class=w> </span>origin<span class=w> </span>&lt;url&gt;
+
+<span class=c1># 推送</span>
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>&lt;branch&gt;
+git<span class=w> </span>push<span class=w> </span>-u<span class=w> </span>origin<span class=w> </span>&lt;branch&gt;
+
+<span class=c1># 拉取</span>
+git<span class=w> </span>pull<span class=w> </span>origin<span class=w> </span>&lt;branch&gt;
+git<span class=w> </span>fetch<span class=w> </span>origin
+</code></pre></div> <h3 id=105>10.5 撤销命令<a class=headerlink href=#105 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># 撤销工作区修改</span>
+git<span class=w> </span>checkout<span class=w> </span>--<span class=w> </span>&lt;file&gt;
+git<span class=w> </span>restore<span class=w> </span>&lt;file&gt;
+
+<span class=c1># 撤销暂存</span>
+git<span class=w> </span>reset<span class=w> </span>HEAD<span class=w> </span>&lt;file&gt;
+git<span class=w> </span>restore<span class=w> </span>--staged<span class=w> </span>&lt;file&gt;
+
+<span class=c1># 撤销提交</span>
+git<span class=w> </span>reset<span class=w> </span>--soft<span class=w> </span>HEAD^
+git<span class=w> </span>reset<span class=w> </span>--hard<span class=w> </span>HEAD^
+git<span class=w> </span>revert<span class=w> </span>&lt;commit&gt;
+</code></pre></div> <h3 id=106>10.6 标签命令<a class=headerlink href=#106 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># 创建标签</span>
+git<span class=w> </span>tag<span class=w> </span>v1.0.0
+git<span class=w> </span>tag<span class=w> </span>-a<span class=w> </span>v1.0.0<span class=w> </span>-m<span class=w> </span><span class=s2>&quot;版本1.0.0&quot;</span>
+
+<span class=c1># 查看标签</span>
+git<span class=w> </span>tag
+git<span class=w> </span>tag<span class=w> </span>-l<span class=w> </span><span class=s2>&quot;v1.*&quot;</span>
+
+<span class=c1># 推送标签</span>
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>v1.0.0
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>--tags
+
+<span class=c1># 删除标签</span>
+git<span class=w> </span>tag<span class=w> </span>-d<span class=w> </span>v1.0.0
+git<span class=w> </span>push<span class=w> </span>origin<span class=w> </span>--delete<span class=w> </span>v1.0.0
+</code></pre></div> <h3 id=107>10.7 实用命令<a class=headerlink href=#107 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># 查看差异</span>
+git<span class=w> </span>diff
+git<span class=w> </span>diff<span class=w> </span>--cached
+git<span class=w> </span>diff<span class=w> </span>HEAD
+
+<span class=c1># 暂存修改</span>
+git<span class=w> </span>stash
+git<span class=w> </span>stash<span class=w> </span>list
+git<span class=w> </span>stash<span class=w> </span>pop
+git<span class=w> </span>stash<span class=w> </span>apply
+
+<span class=c1># 查看文件历史</span>
+git<span class=w> </span>log<span class=w> </span>--follow<span class=w> </span>&lt;file&gt;
+git<span class=w> </span>blame<span class=w> </span>&lt;file&gt;
+
+<span class=c1># 搜索</span>
+git<span class=w> </span>grep<span class=w> </span><span class=s2>&quot;搜索内容&quot;</span>
+git<span class=w> </span>log<span class=w> </span>--grep<span class=o>=</span><span class=s2>&quot;搜索提交信息&quot;</span>
+
+<span class=c1># 清理</span>
+git<span class=w> </span>clean<span class=w> </span>-fd
+git<span class=w> </span>gc<span class=w> </span>--prune<span class=o>=</span>now
+</code></pre></div> <hr> <h2 id=_8>附录<a class=headerlink href=#_8 title="Permanent link">&para;</a></h2> <h3 id=a1-gitignore>A.1 .gitignore模板<a class=headerlink href=#a1-gitignore title="Permanent link">&para;</a></h3> <h4 id=nodejs>Node.js项目<a class=headerlink href=#nodejs title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code># Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+</code></pre></div> <h4 id=python>Python项目<a class=headerlink href=#python title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code># Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.log
+.pytest_cache/
+</code></pre></div> <h4 id=java>Java项目<a class=headerlink href=#java title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code># Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.eclipse/
+
+# Build
+target/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+</code></pre></div> <h3 id=a2-git>A.2 常用Git别名配置<a class=headerlink href=#a2-git title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>alias.co<span class=w> </span>checkout
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>alias.br<span class=w> </span>branch
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>alias.ci<span class=w> </span>commit
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>alias.st<span class=w> </span>status
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>alias.unstage<span class=w> </span><span class=s1>&#39;reset HEAD --&#39;</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>alias.last<span class=w> </span><span class=s1>&#39;log -1 HEAD&#39;</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>alias.visual<span class=w> </span><span class=s1>&#39;!gitk&#39;</span>
+git<span class=w> </span>config<span class=w> </span>--global<span class=w> </span>alias.lg<span class=w> </span><span class=s2>&quot;log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit&quot;</span>
+</code></pre></div> <h3 id=a3>A.3 参考资源<a class=headerlink href=#a3 title="Permanent link">&para;</a></h3> <ul> <li><a href=https://git-scm.com/doc>Git官方文档</a></li> <li><a href=https://docs.github.com/ >GitHub官方文档</a></li> <li><a href=https://git-scm.com/book>Pro Git书籍</a></li> <li><a href=https://learngitbranching.js.org/ >Git可视化学习</a></li> <li><a href=https://guides.github.com/introduction/flow/ >GitHub Flow</a></li> <li><a href=https://www.conventionalcommits.org/ >约定式提交</a></li> </ul> <hr> <p><em>最后更新：2025年8月20日</em></p> </article> </div> <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script> </div> <button type=button class="md-top md-icon" data-md-component=top hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg> 回到页面顶部 </button> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-copyright> <div class=md-copyright__highlight> Copyright &copy; 2025-present <a href=https://github.com/luzhiyu-econ target=_blank rel="noopener noreferrer">陆知雨</a> </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": ["header.autohide", "navigation.tracking", "navigation.top", "navigation.indexes", "search.highlight", "search.share", "search.suggest", "content.code.annotate", "toc.follow"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script> <script src=../../assets/javascripts/bundle.d7c377c4.min.js></script> <script src=../../js/open_in_new_tab.js></script> </body> </html>
