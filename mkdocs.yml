@@ -90,6 +90,7 @@ nav:
       - 计算机上手配置: "第一章/quickstart.md"
       - Python环境配置: "第一章/pythonenv.md"
       - 学会使用命令行: "第一章/command-line-tools.md"
+      - 学会使用Git: "第一章/github使用教程.md"
   - API调用:
       - API概述: "第二章/API_intro.md"
       - 第一次调用API: "第二章/API_python.md"
