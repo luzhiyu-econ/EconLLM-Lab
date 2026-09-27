@@ -27,7 +27,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-CLAUDE.md
 
 # IDE
 .vscode/
@@ -46,3 +45,8 @@ Thumbs.db
 
 #sites
 site/
+node_modules/
+.astro/
+.direnv/
+outputs/
+.env.local

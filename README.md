@@ -1,19 +1,41 @@
 # EconLLM-Lab
 
-**本书目前仍在持续✍🏼中**
+面向经济学研究者的 LLM 实操教程。正式网站：[zhiyulu.org/EconLLM-Lab](https://zhiyulu.org/EconLLM-Lab/)；[前言](https://zhiyulu.org/EconLLM-Lab/preface/)保留原站全文。
 
-## 前言
+## 网站
 
-这是一本经济学LLM实操入门指南，本书的撰写不涉及任何机器学习的底层原理，是一份纯粹的实用导向教程，这也与本书的初衷一致——面向实操的教程。
+站点使用 Astro + Starlight，发布到 GitHub Pages。需要 Node.js 24+。
 
-目前本书包括了以下内容(如果你有其他好的建议，欢迎邮件[luzhiyu@email.cufe.edu.cn](mailto:luzhiyu@email.cufe.edu.cn)） ：
+```bash
+npm ci
+npm run dev
+npm run check
+npm run build
+npm run check:links
+```
 
-- 预备知识：如何使用命令行、如何配置一个实用的编程环境、其他实用工具的介绍
-- 大语言模型实操知识：如何调用大模型、如何调优大模型回复质量、如何让大模型操作工具、如何构建多模型系统
-- 与本书内容相关的其他学习材料与应用实例
+`src/content/docs/` 是发布正文，`src/components/` 和 `src/styles/` 是界面，`public/` 是静态资源。`dist/` 为构建输出，不入库。提交到 `main` 后由 GitHub Actions 构建发布。
 
-## 许可
+## 可运行案例
 
-项目贡献者编写的部分依照 [MIT LICENSE](https://www.tawesoft.co.uk/kb/article/mit-license-faq)。
+案例使用 Python 3.11+ 标准库。项目虚拟环境必须放在本地 SSD；没有 direnv 时手动设置环境变量：
 
-其余部分（包括但不限于书中提到的课程资源、开源书籍以及视频内容）遵循原作者规定的许可。
+```bash
+export UV_PROJECT_ENVIRONMENT="$HOME/.venvs/EconLLM-Lab"
+uv sync
+uv run python -m examples.growth_target.run --offline
+uv run python -m unittest discover tests
+```
+
+在线调用还需 `LLM_BASE_URL`、`LLM_MODEL`、`LLM_API_KEY`。先阅读网站的 API 章节；不要把密钥写入仓库。示例输出集中在 `outputs/growth_target/`，并被 Git 忽略。
+
+## 目录与更新
+
+- `src/content/docs/`：当前可发布的教程。新章节须有可运行示例、预期结果与核验说明。
+- `examples/growth_target/`：短节选、人工标准、模拟回复和运行脚本。
+- `archive/`：旧站与课程资料，见 [历史资料索引](archive/README.md)。历史材料不参与站点构建。
+- `.github/workflows/`：PR 检查和 `main` 发布。
+
+编辑流程：创建分支 → 修改正文或案例 → 运行检查 → 提交 Pull Request → 合并到 `main` → 核验线上页面。未完成的主题先写入路线图，不建立空白导航页。
+
+项目作者编写内容按 [MIT 许可证](LICENSE)使用；历史目录中的第三方资料遵循其原许可。

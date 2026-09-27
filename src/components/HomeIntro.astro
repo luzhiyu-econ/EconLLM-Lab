@@ -1,0 +1,46 @@
+---
+const base = import.meta.env.BASE_URL;
+const cards = [
+  { number: '01', title: '准备好工具', text: '从目录、终端和项目环境开始，把示例真正跑起来。', path: 'guide/environment/' },
+  { number: '02', title: '让文本成为数据', text: '定义字段、写出可检查的提取规则，并保存原始证据。', path: 'guide/text-to-data/' },
+  { number: '03', title: '判断结果能否使用', text: '抽样复核、计算误差，再决定如何进入实证分析。', path: 'guide/evaluation/' },
+];
+---
+
+<div class="home-shell">
+  <section class="home-hero" aria-labelledby="home-title">
+    <div>
+      <span class="home-eyebrow">ECONOMICS × LANGUAGE MODELS</span>
+      <h1 class="home-title" id="home-title">从文本出发，<br />把研究做实。</h1>
+      <p class="home-lead">一份面向经济学研究者的 LLM 实操教程。沿着真实案例，从第一次调用 API 走到可复核的数据与研究结果。</p>
+      <div class="home-links">
+        <a href={`${base}start/`}>开始阅读 ↗</a>
+        <a href={`${base}preface/`}>阅读前言</a>
+      </div>
+    </div>
+    <div class="home-aside">
+      <strong>一条完整路径</strong>
+      配置环境 → 定义任务 → 提取数据 → 评估质量 → 用于研究
+    </div>
+  </section>
+
+  <div class="home-rule"><h2>按步骤学习</h2><span>GUIDED LEARNING PATH</span></div>
+  <div class="home-grid">
+    {cards.map((card) => (
+      <a class="home-card" href={`${base}${card.path}`}>
+        <b>{card.number} / STEP</b>
+        <h3>{card.title}</h3>
+        <p>{card.text}</p>
+      </a>
+    ))}
+  </div>
+
+  <div class="home-rule"><h2>贯穿案例</h2><span>REPRODUCIBLE CASE</span></div>
+  <div class="home-case">
+    <div>
+      <h3>从上海政府工作报告中提取经济增长目标</h3>
+      <p>保留目标原句、模型回复和人工核对记录；离线也能运行示例。</p>
+    </div>
+    <a href={`${base}cases/growth-target/`}>查看案例 ↗</a>
+  </div>
+</div>
