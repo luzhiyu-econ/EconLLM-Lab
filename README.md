@@ -2,7 +2,7 @@
 
 网站：[zhiyulu.org/EconLLM-Lab](https://zhiyulu.org/EconLLM-Lab/)。站点根地址会直接跳转到[前言](https://zhiyulu.org/EconLLM-Lab/preface/)。
 
-目前公开正文只有 `src/content/docs/preface.md`。后续章节由作者重新编写，再逐篇加入 `src/content/docs/` 和 `astro.config.mjs` 的侧边栏。
+目前公开原前言 `src/content/docs/preface.md` 和新前言提纲 `src/content/docs/main-thesis.md`。第零章至第三章尚未建立正文页；后续由作者重写后逐篇加入 `src/content/docs/` 和 `astro.config.mjs` 的侧边栏。
 
 ## 本地预览
 
