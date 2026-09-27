@@ -11,8 +11,10 @@ export default defineConfig({
       description: '面向经济学研究的 LLM 实操教程',
       locales: { root: { label: '简体中文', lang: 'zh-CN' } },
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/luzhiyu-econ/EconLLM-Lab' }],
-      editLink: { baseUrl: 'https://github.com/luzhiyu-econ/EconLLM-Lab/edit/main/' },
-      sidebar: [{ label: '前言', slug: 'preface' }],
+      sidebar: [
+        { label: '前言', slug: 'preface' },
+        { label: 'Main Thesis', slug: 'main-thesis' },
+      ],
     }),
   ],
 });
