@@ -1,0 +1,72 @@
+/* 色值不放入 Starlight 的内部级联层，以确保主题覆盖生效。 */
+  :root {
+    --sl-color-accent-low: #291646;
+    --sl-color-accent: #ba95ed;
+    --sl-color-accent-high: #eee3ff;
+    --sl-color-bg: #111016;
+    --sl-color-bg-nav: #17131f;
+    --sl-color-bg-sidebar: #17131f;
+    --sl-font: 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  :root[data-theme='light'] {
+    --sl-color-accent-low: #f2ebfa;
+    --sl-color-accent: #5e3394;
+    --sl-color-accent-high: #3b1c69;
+    --sl-color-bg: #fff;
+    --sl-color-bg-nav: #fff;
+    --sl-color-bg-sidebar: #fff;
+    --sl-color-text: #24202a;
+    --sl-color-gray-6: #f4f1f6;
+  }
+
+  .site-title { letter-spacing: -.035em; font-weight: 760; }
+  .content-panel h1, .content-panel h2, .home-title {
+    font-family: 'Noto Serif CJK SC', 'Songti SC', 'STSong', serif;
+    letter-spacing: -.035em;
+  }
+  .content-panel h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
+  .content-panel h2 { margin-top: 2.8rem; }
+  .content-panel p, .content-panel li { line-height: 1.85; }
+  .main-frame { max-width: 100rem; }
+  .sidebar-pane { border-right: 1px solid var(--sl-color-hairline-light); }
+  .right-sidebar { border-left: 1px solid var(--sl-color-hairline-light); }
+  .sl-markdown-content a { text-underline-offset: .18em; }
+  .sl-markdown-content img { border: 1px solid var(--sl-color-hairline-light); border-radius: .45rem; }
+main:has(.home-shell) > .content-panel:first-child { display: none; }
+
+.home-shell { max-width: 74rem; margin: auto; padding: 2rem 0 5rem; }
+.home-eyebrow { color: var(--sl-color-accent); font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.home-hero { border-top: 2px solid var(--sl-color-accent); padding-top: 2.3rem; display: grid; grid-template-columns: 1.5fr .6fr; gap: 3rem; }
+.home-title { font-size: clamp(3.1rem, 8vw, 6.4rem); line-height: 1.07; margin: .8rem 0 1.4rem; color: var(--sl-color-text); }
+.home-lead { font-size: clamp(1.07rem, 2vw, 1.3rem); max-width: 43rem; line-height: 1.8; color: var(--sl-color-gray-2); }
+.home-links { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.1rem; }
+.home-links a { text-decoration: none; padding: .75rem 1rem; border: 1px solid var(--sl-color-accent); border-radius: .25rem; font-weight: 700; }
+.home-links a:first-child { background: var(--sl-color-accent); color: var(--sl-color-text-invert); }
+.home-aside { align-self: end; border-left: 1px solid var(--sl-color-accent); padding: .3rem 0 .3rem 1.3rem; color: var(--sl-color-gray-2); line-height: 1.8; }
+.home-aside strong { display: block; font-family: 'Noto Serif CJK SC', 'Songti SC', serif; font-size: 1.5rem; color: var(--sl-color-text); }
+.home-rule { margin: 5rem 0 1.3rem; border-top: 1px solid var(--sl-color-hairline-light); padding-top: 1.1rem; display: flex; justify-content: space-between; gap: 1rem; }
+.home-rule h2 { margin: 0; font-size: 1.2rem; }
+.home-rule span { font-size: .8rem; color: var(--sl-color-gray-3); }
+.home-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+.home-card { border: 1px solid var(--sl-color-hairline-light); padding: 1.3rem; min-height: 13rem; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
+.home-card:hover, .home-card:focus-visible { border-color: var(--sl-color-accent); transform: translateY(-2px); }
+.home-card b { color: var(--sl-color-accent); font-size: .8rem; letter-spacing: .1em; }
+.home-card h3 { margin: 2rem 0 .6rem; font-family: 'Noto Serif CJK SC', 'Songti SC', serif; font-size: 1.45rem; }
+.home-card p { margin: 0; color: var(--sl-color-gray-2); line-height: 1.7; font-size: .92rem; }
+.home-case { background: var(--sl-color-accent-low); border-left: 3px solid var(--sl-color-accent); padding: 1.5rem 1.7rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; }
+.home-case h3 { margin: .2rem 0 .5rem; font-size: 1.3rem; }
+.home-case p { margin: 0; color: var(--sl-color-gray-2); }
+.home-case a { white-space: nowrap; font-weight: 700; }
+@media (max-width: 50rem) {
+  .home-shell { padding-top: 0; }
+  .home-hero { display: block; }
+  .home-aside { margin-top: 2.5rem; }
+  .home-grid { grid-template-columns: 1fr; }
+  .home-card { min-height: auto; }
+  .home-card h3 { margin-top: 1rem; }
+  .home-case { display: block; }
+  .home-case a { display: inline-block; margin-top: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-card { transition: none; }
+}

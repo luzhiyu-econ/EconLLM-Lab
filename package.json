@@ -1,0 +1,23 @@
+{
+  "name": "econllm-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:links": "node scripts/check-links.mjs"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/mdx": "^8.0.2",
+    "@astrojs/starlight": "^0.42.4",
+    "astro": "^7.3.5",
+    "typescript": "^6.0.3"
+  }
+}
