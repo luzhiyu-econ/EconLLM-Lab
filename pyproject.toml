@@ -1,9 +1,0 @@
-[project]
-name = "econllm-lab-examples"
-version = "1.0.0"
-description = "Runnable examples for the EconLLM-Lab tutorial"
-requires-python = ">=3.11"
-dependencies = []
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]

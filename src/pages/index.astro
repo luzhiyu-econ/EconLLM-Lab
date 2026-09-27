@@ -1,0 +1,14 @@
+---
+const destination = `${import.meta.env.BASE_URL}preface/`;
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${destination}`} />
+    <link rel="canonical" href={`https://zhiyulu.org${destination}`} />
+    <title>前言 · EconLLM-Lab</title>
+    <script is:inline>window.location.replace('/EconLLM-Lab/preface/');</script>
+  </head>
+  <body><a href={destination}>进入前言</a></body>
+</html>
