@@ -13,7 +13,7 @@ export default defineConfig({
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/luzhiyu-econ/EconLLM-Lab' }],
       sidebar: [
         { label: '前言', slug: 'preface' },
-        { label: 'Main Thesis', slug: 'main-thesis' },
+        { label: '在词语与世界之间', slug: 'main-thesis' },
       ],
     }),
   ],
