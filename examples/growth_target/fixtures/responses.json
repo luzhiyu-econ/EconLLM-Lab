@@ -1,7 +1,0 @@
-[
-  {"report_year":2019,"target_quote":"全市生产总值增长6%-6.5%","target_expression":"6%-6.5%","target_value":null,"target_min":6.0,"target_max":6.5,"target_qualifier":"range","status":"found"},
-  {"report_year":2020,"target_quote":"全市生产总值增长6%左右","target_expression":"6%左右","target_value":6.0,"target_min":null,"target_max":null,"target_qualifier":"around","status":"found"},
-  {"report_year":2021,"target_quote":"全市生产总值增长6%以上","target_expression":"6%以上","target_value":6.5,"target_min":null,"target_max":null,"target_qualifier":"at_least","status":"found"},
-  {"report_year":2022,"target_quote":"全市生产总值增长5.5%左右","target_expression":"5.5%左右","target_value":5.5,"target_min":null,"target_max":null,"target_qualifier":"around","status":"found"},
-  {"report_year":2023,"target_quote":"全市生产总值增长5.5%以上","target_expression":"5.5%以上","target_value":5.5,"target_min":null,"target_max":null,"target_qualifier":"at_least","status":"found"}
-]
