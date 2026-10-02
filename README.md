@@ -1,8 +1,6 @@
 # EconLLM-Lab
 
-网站：[zhiyulu.org/EconLLM-Lab](https://zhiyulu.org/EconLLM-Lab/)。站点根地址会直接跳转到[前言](https://zhiyulu.org/EconLLM-Lab/preface/)。
-
-目前公开原前言 `src/content/docs/preface.md` 和正文《在词语与世界之间》`src/content/docs/main-thesis.md`。正文从语言与意义的理论出发，沿计算方法的演进讨论语言如何成为研究证据。第零章至第三章尚未建立正文页；后续由作者重写后逐篇加入 `src/content/docs/` 和 `astro.config.mjs` 的侧边栏。
+网站：[zhiyulu.org/EconLLM-Lab](https://zhiyulu.org/EconLLM-Lab/)。
 
 ## 本地预览
 
