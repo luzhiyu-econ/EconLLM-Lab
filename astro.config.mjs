@@ -14,6 +14,7 @@ export default defineConfig({
       sidebar: [
         { label: '前言', slug: 'preface' },
         { label: '在词语与世界之间', slug: 'main-thesis' },
+        { label: 'Best Learning Resources', slug: 'best-learning-resources' },
       ],
     }),
   ],
