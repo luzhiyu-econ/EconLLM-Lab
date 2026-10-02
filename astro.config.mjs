@@ -12,8 +12,14 @@ export default defineConfig({
       locales: { root: { label: '简体中文', lang: 'zh-CN' } },
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/luzhiyu-econ/EconLLM-Lab' }],
       sidebar: [
-        { label: '前言', slug: 'preface' },
-        { label: '在词语与世界之间', slug: 'main-thesis' },
+        {
+          label: '前言',
+          collapsed: false,
+          items: [
+            { label: '作者说', slug: 'preface' },
+            { label: '在词语与世界之间', slug: 'main-thesis' },
+          ],
+        },
         { label: 'Best Learning Resources', slug: 'best-learning-resources' },
       ],
     }),
