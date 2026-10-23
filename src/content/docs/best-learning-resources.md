@@ -1,5 +1,5 @@
 ---
-title: Best Learning Resources
+title: 教程与文献
 description: 与经济学研究相关的大语言模型教程、官方文档和提示工程研究
 ---
 

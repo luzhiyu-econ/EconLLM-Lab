@@ -20,7 +20,14 @@ export default defineConfig({
             { label: '在词语与世界之间', slug: 'main-thesis' },
           ],
         },
-        { label: 'Best Learning Resources', slug: 'best-learning-resources' },
+        {
+          label: 'Best Learning Resources',
+          collapsed: false,
+          items: [
+            { label: '教程与文献', slug: 'best-learning-resources' },
+            { label: 'Skills Resources', slug: 'resources/skills-resources' },
+          ],
+        },
       ],
     }),
   ],
