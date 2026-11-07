@@ -13,6 +13,7 @@
 - Use product-neutral chapter titles and neutral narration in instructional chapters. Explain shared AI Agent mechanisms; product names belong in concrete examples and source attribution.
 - Research-agent diagrams follow the author's PowerPoint examples: Chinese serif text, white backgrounds, gray headings, thin rectangular borders, dashed groups, and labeled arrows. Store editable Draw.io files, SVGs, and PNGs under `public/diagrams/research-agents/chapter-N/`; keep real interface images and source records under `public/images/research-agents/chapter-N/`.
 - Image captions describe content and identify sources; omit viewing instructions and editable-source links from captions.
+- Omit overall titles and explanatory footer text inside flowcharts; retain group headings, node text, and arrow labels. Do not publish downloadable chapter bundles or links to them.
 - Write and present subsequent chapters one at a time, and publish each only after the author's approval. Omit chapter-ending previews that merely repeat the next page's topic.
 - Use Node.js 24+. Install locked dependencies with `npm ci` when needed; for site changes, run `npm run check`, `npm run build`, and `git diff --check` before publishing.
 - `archive/lectures/` contains historical course files and is excluded from the site. Build output in `dist/` is not tracked.

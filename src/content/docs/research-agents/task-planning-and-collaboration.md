@@ -96,5 +96,3 @@ Hooks 则把操作接到特定事件上。例如，文件编辑后运行格式�
 [![Skills、Tools、Subagents、MCP 和 Hooks 与执行框架的关系](/EconLLM-Lab/diagrams/research-agents/chapter-2/agent-extensions.svg)](/EconLLM-Lab/diagrams/research-agents/chapter-2/agent-extensions.svg)
 
 *图 5　任务说明、子任务、外部资源与事件脚本怎样接入执行框架。*
-
-[下载本章图文](/EconLLM-Lab/downloads/ai-agent-internals.zip)
