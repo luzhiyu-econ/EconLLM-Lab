@@ -1,0 +1,23 @@
+{
+  "images": [
+    {
+      "file": "context-usage.webp",
+      "original": "originals/context-usage.jpg",
+      "source_page": "https://academy.claude.com/courses/claude-code-101/context-management",
+      "direct_image_url": "https://academy.claude.com/assets/media/d0b6a1d0ad4a21aa61a48751f2d382a77edc3fde154f8f5aebd2509ebc325420.jpg",
+      "downloaded_at": "2026-11-08T01:11:22.050710+08:00",
+      "rights_holder": "Anthropic PBC",
+      "original_dimensions": [
+        3840,
+        2160
+      ],
+      "web_dimensions": [
+        1920,
+        1080
+      ],
+      "processing": "Full frame preserved; resized from 3840×2160 to 1920×1080 and encoded as WebP. No cropping, annotation, or content alteration.",
+      "caption": "一次会话的上下文占用示例：系统指令、工具定义与消息分别占用空间。来源：Claude Academy。",
+      "license_note": "Official educational screenshot; rights remain with the original rights holder. No open license claimed."
+    }
+  ]
+}

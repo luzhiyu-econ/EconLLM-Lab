@@ -10,6 +10,7 @@ downloads/
 !public/downloads/
 public/downloads/*
 !public/downloads/from-prompts-to-agents.zip
+!public/downloads/ai-agent-internals.zip
 eggs/
 .eggs/
 lib/
