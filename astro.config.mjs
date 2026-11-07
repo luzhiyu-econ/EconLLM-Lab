@@ -52,13 +52,13 @@ export default defineConfig({
           ],
         },
         {
-          label: '四、研究者如何与 AI 协作',
+          label: '四、AI Agent 的原理与科研应用',
           collapsed: false,
           items: [
-            { label: '研究者的工具箱', slug: 'research-agents/codex-and-claude-code' },
-            { label: '把研究任务说清楚', slug: 'research-agents/task-planning-and-collaboration' },
-            { label: '从材料整理到实证分析', slug: 'research-agents/from-data-to-analysis' },
-            { label: '让研究过程可以复查', slug: 'research-agents/verification-and-reproducibility' },
+            { label: '从提示词到智能体', slug: 'research-agents/codex-and-claude-code' },
+            { label: 'Claude Code 的工作原理', slug: 'research-agents/task-planning-and-collaboration' },
+            { label: 'Claude Code 的配置与使用', slug: 'research-agents/from-data-to-analysis' },
+            { label: '科研 Skills 的设计与实践', slug: 'research-agents/verification-and-reproducibility' },
           ],
         },
         {

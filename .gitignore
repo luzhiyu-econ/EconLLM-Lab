@@ -7,6 +7,9 @@ build/
 develop-eggs/
 dist/
 downloads/
+!public/downloads/
+public/downloads/*
+!public/downloads/from-prompts-to-agents.zip
 eggs/
 .eggs/
 lib/
