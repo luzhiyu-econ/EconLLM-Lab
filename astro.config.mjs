@@ -56,8 +56,8 @@ export default defineConfig({
           collapsed: false,
           items: [
             { label: '从提示词到智能体', slug: 'research-agents/codex-and-claude-code' },
-            { label: 'Claude Code 的工作原理', slug: 'research-agents/task-planning-and-collaboration' },
-            { label: 'Claude Code 的配置与使用', slug: 'research-agents/from-data-to-analysis' },
+            { label: 'AI Agent 的工作原理', slug: 'research-agents/task-planning-and-collaboration' },
+            { label: 'AI Agent 的配置与使用', slug: 'research-agents/from-data-to-analysis' },
             { label: '科研 Skills 的设计与实践', slug: 'research-agents/verification-and-reproducibility' },
           ],
         },

@@ -1,6 +1,6 @@
 ---
 title: Skills Resources
-description: 面向经济学研究的 Claude Code 技能与工作流程
+description: 面向经济学研究的 AI Agent 技能与工作流程
 ---
 
 [MixtapeTools](https://github.com/scunning1975/MixtapeTools) 由经济学者 Scott Cunningham 整理，收录了他使用 Claude Code 开展研究、教学和报告的工具与经验。其中包括实证代码核查、R、Stata 与 Python 之间的结果复现、参考文献检查、论文分块阅读和 Beamer 演示文稿制作。初次阅读可以从仓库中的工作流程说明入手，再查看具体技能如何安排执行步骤与结果核验。

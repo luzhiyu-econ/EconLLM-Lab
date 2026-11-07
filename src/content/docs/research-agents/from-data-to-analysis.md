@@ -1,6 +1,6 @@
 ---
-title: Claude Code 的配置与使用
-description: 按讲稿顺序介绍安装、模型接入、全局与项目配置、CLAUDE.md，以及 Plan 和工作流定制。
+title: AI Agent 的配置与使用
+description: 按讲稿顺序介绍安装、模型接入、全局与项目配置、项目说明，以及 Plan 和工作流定制。
 ---
 
 *本章待写。*
@@ -9,9 +9,9 @@ description: 按讲稿顺序介绍安装、模型接入、全局与项目配置�
 
 ## 二、全局配置与项目配置
 
-## 三、settings.json：工具权限与运行设置
+## 三、运行设置与工具权限
 
-## 四、CLAUDE.md 与 rules：项目说明和行为规范
+## 四、项目说明与行为规范
 
 ## 五、Plan first：先探索，再规划
 

@@ -5,7 +5,7 @@ description: 从网页与 API 的使用入口出发，梳理提示词、工作�
 
 ## 一、网页与 API：两种使用入口
 
-在介绍 Claude Code 之前，先区分两种常见的大语言模型使用方式：直接打开网页与模型对话，或者通过 API，将模型接入自己编写的程序。理解两者的区别，需要先看模型实际接收了什么。
+在介绍 AI Agent 之前，先区分两种常见的大语言模型使用方式：直接打开网页与模型对话，或者通过 API，将模型接入自己编写的程序。理解两者的区别，需要先看模型实际接收了什么。
 
 我们在对话框里输入的一句话，只是输入的一部分。应用还可能向模型提供任务规则、历史对话、参考材料，以及工具执行后返回的信息。这些内容共同构成模型当前可用的上下文。模型本身的参数则来自训练，普通的提示词调用通常不会修改这些参数。
 
@@ -19,7 +19,7 @@ description: 从网页与 API 的使用入口出发，梳理提示词、工作�
 
 [![网页入口与 API 应用入口中，模型输入的组织方式](/EconLLM-Lab/diagrams/research-agents/chapter-1/web-and-api.svg)](/EconLLM-Lab/diagrams/research-agents/chapter-1/web-and-api.svg)
 
-*图 1　网页与 API 应用怎样组织模型输入。点击图片可查看大图。[可编辑源文件](/EconLLM-Lab/diagrams/research-agents/chapter-1/web-and-api.drawio)。*
+*图 1　网页与 API 应用怎样组织模型输入。*
 
 这解释了为什么使用同一个模型的产品，实际体验可能差别很大。一个侧边栏助手，可以把当前网页内容连同用户的问题交给模型；一个编辑器助手，可以把正在修改的文件和相关代码一起提供给模型。它们所调用的模型可能相同，但模型获得的材料、可使用的工具，以及结果返回的位置，都可以不同。
 
@@ -43,9 +43,9 @@ description: 从网页与 API 的使用入口出发，梳理提示词、工作�
 
 [![提示词、预设工作流与智能体的任务安排方式](/EconLLM-Lab/diagrams/research-agents/chapter-1/prompt-workflow-agent.svg)](/EconLLM-Lab/diagrams/research-agents/chapter-1/prompt-workflow-agent.svg)
 
-*图 2　从逐次提问、预先编排，到依据反馈选择操作。[可编辑源文件](/EconLLM-Lab/diagrams/research-agents/chapter-1/prompt-workflow-agent.drawio)。*
+*图 2　从逐次提问、预先编排，到依据反馈选择操作。*
 
-## 三、工作流与工具集成：Coze、Cursor 与 Manus
+## 三、工作流与工具集成
 
 这一变化有两方面的推动。
 
@@ -91,11 +91,11 @@ Manus 展示了另一种组织方式：为模型准备一套包含浏览器、�
 
 既然模型已经能够拆解部分任务、选择工具，也能够编写代码，那么就可以进一步搭建一个执行框架，把读取文件、编辑内容和运行命令等操作接入其中。模型根据用户目标和当前结果，决定接下来需要读取什么、执行什么，再由框架完成相应操作。
 
-Claude Code 采用的就是这类设计。它在模型周围提供文件和命令工具，并组织模型所需的上下文。模型可以读取项目、修改文件、运行程序，再根据返回的信息继续工作。[Claude Code 官方文档：工作原理](https://code.claude.com/docs/en/how-claude-code-works)
+接入本地项目的 AI Agent，就可以采用这类设计：在模型周围提供文件和命令工具，并组织模型所需的上下文。模型可以读取项目、修改文件、运行程序，再根据返回的信息继续工作。[工作原理示例](https://code.claude.com/docs/en/how-claude-code-works)
 
 [![独立任务环境与接入本地项目后的执行过程](/EconLLM-Lab/diagrams/research-agents/chapter-1/local-integration.svg)](/EconLLM-Lab/diagrams/research-agents/chapter-1/local-integration.svg)
 
-*图 6　接入已有项目后，文件操作、程序执行与结果反馈可以在同一任务中接续。模型服务仍可位于云端。[可编辑源文件](/EconLLM-Lab/diagrams/research-agents/chapter-1/local-integration.drawio)。*
+*图 6　接入已有项目后，文件操作、程序执行与结果反馈可以在同一任务中接续。模型服务仍可位于云端。*
 
 同样是修改一篇 LaTeX 论文，在已经配置好编译环境的项目中，它可以先查看主文件和相关章节，读取参考文献与格式设置，随后修改对应文件并运行编译。若编译报错，再读取日志，定位问题，继续修改。生成的文件保存在项目目录里，下一次任务可以从这些文件继续。
 
@@ -105,6 +105,6 @@ Claude Code 采用的就是这类设计。它在模型周围提供文件和命�
 
 这里所说的本地集成，指的是模型能够通过工具操作自己的工作区。模型服务仍然可以位于云端，文件读写和程序执行则发生在接入的本地环境中。原来的数据、代码、编译器和其他命令行工具，因而能够进入同一个任务过程。
 
-这也是理解 AI Agent 的一个具体起点：模型获得了可执行的操作，能够利用操作结果继续安排工作。Claude Code 等工具的设计，便围绕怎样提供上下文、怎样让模型使用工具，以及怎样持续推进任务展开。
+这也是理解 AI Agent 的一个具体起点：模型获得了可执行的操作，能够利用操作结果继续安排工作。这类框架的设计，便围绕怎样提供上下文、怎样让模型使用工具，以及怎样持续推进任务展开。
 
-[下载本章图文与可编辑流程图](/EconLLM-Lab/downloads/from-prompts-to-agents.zip)
+[下载本章图文](/EconLLM-Lab/downloads/from-prompts-to-agents.zip)

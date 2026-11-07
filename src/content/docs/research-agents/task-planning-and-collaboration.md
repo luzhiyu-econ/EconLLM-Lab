@@ -1,5 +1,5 @@
 ---
-title: Claude Code 的工作原理
+title: AI Agent 的工作原理
 description: 从 API 请求与上下文组织理解系统指令、对话历史、工具调用、执行循环和扩展机制。
 ---
 
@@ -15,4 +15,4 @@ description: 从 API 请求与上下文组织理解系统指令、对话历史�
 
 ## 五、Agentic Loop：模型与工具的执行循环
 
-## 六、Subagents、MCP 与 Hooks
+## 六、Tools、Skills 与扩展机制
