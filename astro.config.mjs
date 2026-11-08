@@ -89,7 +89,7 @@ export default defineConfig({
           label: 'AI Agent 的原理与科研应用',
           collapsed: false,
           items: [
-            { label: '从提示词到智能体', slug: 'research-agents/from-prompts-to-agents' },
+            { label: '从瓶中脑到智能体', slug: 'research-agents/from-prompts-to-agents' },
             { label: 'AI Agent 的工作原理', slug: 'research-agents/how-agents-work' },
             { label: 'AI Agent 的配置与使用', slug: 'research-agents/setup-and-use' },
             { label: '科研 Skills 的设计与实践', slug: 'research-agents/research-skills-design-and-practice' },

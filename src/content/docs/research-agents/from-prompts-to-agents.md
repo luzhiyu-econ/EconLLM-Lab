@@ -1,7 +1,9 @@
 ---
-title: 从提示词到智能体
+title: 从瓶中脑到智能体
 description: 从网页与 API 的使用入口出发，梳理提示词、工作流与工具集成，以及模型与本地环境的深度集成。
 ---
+
+[![AI 的思维与推理能力增强，并逐渐成为协调机器运行的主体](/EconLLM-Lab/diagrams/research-agents/chapter-1/brain-and-machine-evolution.png)](/EconLLM-Lab/diagrams/research-agents/chapter-1/brain-and-machine-evolution.png)
 
 ## 一、网页与 API：两种使用入口
 
