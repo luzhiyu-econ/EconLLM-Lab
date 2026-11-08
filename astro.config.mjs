@@ -22,7 +22,17 @@ export default defineConfig({
           ],
         },
         {
-          label: '一、文本如何成为数据',
+          label: 'Best Learning Resources',
+          collapsed: false,
+          items: [
+            { label: '教程与文献', slug: 'best-learning-resources' },
+            { label: '如何写 prompt', slug: 'resources/how-to-prompt' },
+            { label: 'Agent框架与原理', slug: 'resources/agent-frameworks-and-principles' },
+            { label: 'Skills Resources', slug: 'resources/skills-resources' },
+          ],
+        },
+        {
+          label: '文本如何成为数据',
           collapsed: false,
           items: [
             { label: '从词语到上下文', slug: 'text-processing/from-nlp-to-transformers' },
@@ -32,7 +42,7 @@ export default defineConfig({
           ],
         },
         {
-          label: '二、判断如何成为标签',
+          label: '判断如何成为标签',
           collapsed: false,
           items: [
             { label: '从研究问题到标注规则', slug: 'llm-annotation/from-questions-to-labels' },
@@ -42,7 +52,7 @@ export default defineConfig({
           ],
         },
         {
-          label: '三、模型如何模拟世界',
+          label: '模型如何模拟世界',
           collapsed: false,
           items: [
             { label: '从行为实验到宏观模拟', slug: 'economic-agents/from-experiments-to-macro' },
@@ -52,23 +62,13 @@ export default defineConfig({
           ],
         },
         {
-          label: '四、AI Agent 的原理与科研应用',
+          label: 'AI Agent 的原理与科研应用',
           collapsed: false,
           items: [
             { label: '从提示词到智能体', slug: 'research-agents/codex-and-claude-code' },
             { label: 'AI Agent 的工作原理', slug: 'research-agents/task-planning-and-collaboration' },
             { label: 'AI Agent 的配置与使用', slug: 'research-agents/from-data-to-analysis' },
             { label: '科研 Skills 的设计与实践', slug: 'research-agents/verification-and-reproducibility' },
-          ],
-        },
-        {
-          label: 'Best Learning Resources',
-          collapsed: false,
-          items: [
-            { label: '教程与文献', slug: 'best-learning-resources' },
-            { label: '如何写 prompt', slug: 'resources/how-to-prompt' },
-            { label: 'Agent框架与原理', slug: 'resources/agent-frameworks-and-principles' },
-            { label: 'Skills Resources', slug: 'resources/skills-resources' },
           ],
         },
       ],
