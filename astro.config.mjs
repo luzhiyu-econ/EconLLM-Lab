@@ -67,6 +67,7 @@ export default defineConfig({
           items: [
             { label: '教程与文献', slug: 'best-learning-resources' },
             { label: '如何写 prompt', slug: 'resources/how-to-prompt' },
+            { label: 'Agent框架与原理', slug: 'resources/agent-frameworks-and-principles' },
             { label: 'Skills Resources', slug: 'resources/skills-resources' },
           ],
         },
