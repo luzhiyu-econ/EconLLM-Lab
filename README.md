@@ -15,6 +15,8 @@ npm run build
 
 站点使用 Astro 和 Starlight；提交到 `main` 后由 `.github/workflows/pages.yml` 发布到 GitHub Pages。`dist/` 是构建结果，不入库。
 
+章节按分区保存在 `src/content/docs/`，文件路径对应正式 URL，左侧导航由 `astro.config.mjs` 配置。旧章节路径与新路径的对应关系集中保存在 `src/legacy-chapter-paths.mjs`，构建时生成自动跳转页。
+
 `archive/lectures/` 保存原有课堂资料，不参与网站构建。旧站正文已从当前分支移除，必要时可从 `backup/pre-astro-main` 标签查阅。
 
 项目作者编写内容按 [MIT 许可证](LICENSE)使用；历史目录中的第三方资料遵循其原许可。

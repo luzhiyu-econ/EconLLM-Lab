@@ -1,14 +1,16 @@
 ---
-const destination = `${import.meta.env.BASE_URL}preface/`;
+const destination = `${import.meta.env.BASE_URL}preface/authors-note/`;
 ---
 <!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content={`0; url=${destination}`} />
     <link rel="canonical" href={`https://zhiyulu.org${destination}`} />
     <title>作者说 · EconLLM-Lab</title>
-    <script is:inline>window.location.replace('/EconLLM-Lab/preface/');</script>
+    <script is:inline define:vars={{ destination }}>
+      window.location.replace(destination + window.location.search + window.location.hash);
+    </script>
+    <noscript><meta http-equiv="refresh" content={`0;url=${destination}`} /></noscript>
   </head>
   <body><a href={destination}>进入作者说</a></body>
 </html>

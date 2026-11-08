@@ -1,12 +1,13 @@
 # Repository guide
 
 - This repository publishes `https://zhiyulu.org/EconLLM-Lab/` with Astro, Starlight, and GitHub Pages.
-- The root URL redirects to `/EconLLM-Lab/preface/`, whose page title is `作者说`.
+- The root URL redirects to `/EconLLM-Lab/preface/authors-note/`, whose page title is `作者说`.
 - Published content lives in `src/content/docs/`; navigation is configured in `astro.config.mjs`.
-- Sidebar groups represent sections, and their pages represent chapters. The `前言` section contains `作者说`, `术语与约定` (`glossary`), and `在词语与世界之间`, in that order.
-- In this book, `AI` specifically refers to generative large language models (LLMs); `glossary` defines recurring terms and distinguishes simulated economic agents from research assistants.
+- Chapter URLs use lowercase English topic names separated by hyphens, without chapter numbers or product names unless the chapter concerns that product. Content files follow the canonical URL structure. Permanent old-to-new chapter paths are maintained in `src/legacy-chapter-paths.mjs`; redirects must include the site's base path in their destinations.
+- Sidebar groups represent sections, and their pages represent chapters. The `前言` section contains `作者说` (`preface/authors-note`), `术语与约定` (`preface/terms-and-conventions`), and `在词语与世界之间` (`preface/language-meaning-and-research`), in that order.
+- In this book, `AI` specifically refers to generative large language models (LLMs); `preface/terms-and-conventions` defines recurring terms and distinguishes simulated economic agents from research assistants.
 - Four unnumbered modules follow `Best Learning Resources`: AI-era text processing (`text-processing/`), LLM annotation (`llm-annotation/`), AI economic agents (`economic-agents/`), and research agents (`research-agents/`). Each contains four chapters; preserve their order and URLs when adding content. The first three research-agent chapters contain approved content; the final research-agent chapter currently contains an outline. Chapter three links to official installation guides and gives concise research-workflow advice.
-- `Best Learning Resources` immediately follows `前言` and groups `教程与文献` (`best-learning-resources`), `如何写 prompt` (`resources/how-to-prompt`), `Agent框架与原理` (`resources/agent-frameworks-and-principles`), and `Skills Resources` (`resources/skills-resources`). Add chapters as the author requests them, and update the navigation accordingly.
+- `Best Learning Resources` immediately follows `前言` and groups `教程与文献` (`resources/tutorials-and-literature`), `如何写 prompt` (`resources/prompt-writing`), `Agent框架与原理` (`resources/agent-frameworks-and-principles`), and `Skills Resources` (`resources/research-skills`). Add chapters as the author requests them, and update the navigation accordingly.
 - Add or rewrite published content as requested or approved by the author. Preserve existing text and URLs unless the task calls for changes.
 - Follow the existing concise prose, paragraph layout, and inline references.
 - Use concise Chinese chapter titles and follow the author's requested structure. The research-agent module follows the author's lecture: usage paradigms, agent internals, setup and use, then research Skills design and practice. Its placeholder pages contain subsection outlines for that progression.
